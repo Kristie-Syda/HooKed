@@ -8,6 +8,7 @@
 
 #import "Menu.h"
 #import <Parse/Parse.h>
+#import "GameScene.h"
 
 @implementation Menu
 
@@ -21,6 +22,7 @@
     SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:@"btn_menu"];
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
     label.text = title;
+    label.name = title;
     label.fontColor = [SKColor whiteColor];
     label.fontSize = 20;
     label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
@@ -67,16 +69,55 @@
         //Leaderboard
         SKSpriteNode *lead = [self makeBtn:@"Leaderboard" position:CGPointMake(ach.position.x, ach.position.y - 50)];
         
+        //LogOut
+        SKSpriteNode *logOut = [SKSpriteNode spriteNodeWithImageNamed:@"btn_LogOut"];
+        logOut.name = @"LogOut";
+        logOut.position = CGPointMake(self.size.width/4 - 20,self.size.height - 80);
+        
+        //View Profile
+        SKSpriteNode *viewProfile = [SKSpriteNode spriteNodeWithImageNamed:@"btn_viewProf"];
+        viewProfile.name = @"Profile";
+        viewProfile.position = CGPointMake(self.size.width/4 - 20, self.size.height - 120);
+        
         
         [self addChild: titleLabel];
         [self addChild:play];
         [self addChild:tut];
         [self addChild:ach];
         [self addChild:lead];
+        [self addChild:logOut];
+        [self addChild:viewProfile];
         [self addChild:bg];
     }
     
     return self;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *touched = [self nodeAtPoint:location];
+    
+    if ([touched.name isEqualToString:@"Play Game"]){
+        
+        GameScene *scene = [GameScene sceneWithSize:self.size];
+        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+        [self.view presentScene:scene transition:trans];
+    
+    } else if ([touched.name isEqualToString:@"Tutorial"]){
+        
+    } else if ([touched.name isEqualToString:@"Achievements"]){
+        
+    } else if ([touched.name isEqualToString:@"Leaderboard"]){
+        
+    } else if ([touched.name isEqualToString:@"LogOut"]){
+        
+    } else if ([touched.name isEqualToString:@"Profile"]){
+        
+    }
+
+
 }
 
 

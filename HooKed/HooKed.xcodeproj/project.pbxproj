@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43820591D0426C200964AF2 /* Worm.m in Sources */ = {isa = PBXBuildFile; fileRef = C43820581D0426C200964AF2 /* Worm.m */; };
 		C44BE7631CF62D630044312A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */; };
 		C44BE7651CF62D690044312A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */; };
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
@@ -57,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C43820571D0426C200964AF2 /* Worm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Worm.h; sourceTree = "<group>"; };
+		C43820581D0426C200964AF2 /* Worm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Worm.m; sourceTree = "<group>"; };
 		C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C44BE7661CF62D740044312A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				C48013BE1CF49E5500143162 /* Account.m */,
 				C44BE7681CF63D1D0044312A /* Forgot.h */,
 				C44BE7691CF63D1D0044312A /* Forgot.m */,
+				C43820571D0426C200964AF2 /* Worm.h */,
+				C43820581D0426C200964AF2 /* Worm.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				C48013BF1CF49E5500143162 /* Account.m in Sources */,
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,
+				C43820591D0426C200964AF2 /* Worm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

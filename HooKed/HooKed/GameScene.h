@@ -7,7 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Worm.h"
 
-@interface GameScene : SKScene
-
+@interface GameScene : SKScene <SKPhysicsContactDelegate>
+{
+    SKNode*fish;
+    SKSpriteNode *bg;
+    SKSpriteNode *bg1;
+    SKSpriteNode *bg2;
+    SKSpriteNode *hook;
+    Worm *worm;
+    NSTimeInterval time;
+    int level;
+}
 @end

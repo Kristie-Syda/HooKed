@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "Register.h"
+#import "GameScene.h"
 
 @implementation GameViewController
 
@@ -21,9 +22,10 @@
     skView.showsNodeCount = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = NO;
+    skView.showsPhysics = YES;
     
     // Create and configure the Register/Login scene.
-    Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
+    GameScene *scene = [[GameScene alloc] initWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     scene.anchorPoint = CGPointMake(0, 0);
     
