@@ -80,7 +80,7 @@
         viewProfile.position = CGPointMake(self.size.width/4 - 20, self.size.height - 120);
         
         
-        [self addChild: titleLabel];
+        [self addChild:titleLabel];
         [self addChild:play];
         [self addChild:tut];
         [self addChild:ach];

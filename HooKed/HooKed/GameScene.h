@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Worm.h"
+#import "PauseMenu.h"
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 {
@@ -19,5 +20,8 @@
     Worm *worm;
     NSTimeInterval time;
     int level;
+    PauseMenu *pause;
+    SKNode *menu;
+    SKSpriteNode *btn_pause;
 }
 @end

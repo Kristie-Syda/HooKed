@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C43820591D0426C200964AF2 /* Worm.m in Sources */ = {isa = PBXBuildFile; fileRef = C43820581D0426C200964AF2 /* Worm.m */; };
+		C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205B1D0466E600964AF2 /* PauseMenu.m */; };
+		C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205E1D04EF9E00964AF2 /* GameOver.m */; };
 		C44BE7631CF62D630044312A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */; };
 		C44BE7651CF62D690044312A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */; };
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
@@ -60,6 +62,10 @@
 /* Begin PBXFileReference section */
 		C43820571D0426C200964AF2 /* Worm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Worm.h; sourceTree = "<group>"; };
 		C43820581D0426C200964AF2 /* Worm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Worm.m; sourceTree = "<group>"; };
+		C438205A1D0466E600964AF2 /* PauseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
+		C438205B1D0466E600964AF2 /* PauseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenu.m; sourceTree = "<group>"; };
+		C438205D1D04EF9E00964AF2 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
+		C438205E1D04EF9E00964AF2 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
 		C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C44BE7661CF62D740044312A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -207,6 +213,10 @@
 				C44BE7691CF63D1D0044312A /* Forgot.m */,
 				C43820571D0426C200964AF2 /* Worm.h */,
 				C43820581D0426C200964AF2 /* Worm.m */,
+				C438205A1D0466E600964AF2 /* PauseMenu.h */,
+				C438205B1D0466E600964AF2 /* PauseMenu.m */,
+				C438205D1D04EF9E00964AF2 /* GameOver.h */,
+				C438205E1D04EF9E00964AF2 /* GameOver.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -371,12 +381,14 @@
 				C480139F1CF44B9000143162 /* Menu.m in Sources */,
 				C48013721CF44B1500143162 /* GameViewController.m in Sources */,
 				C48013BC1CF464D500143162 /* Register.m in Sources */,
+				C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */,
 				C480136A1CF44B1500143162 /* AppDelegate.m in Sources */,
 				C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */,
 				C48013BF1CF49E5500143162 /* Account.m in Sources */,
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,
 				C43820591D0426C200964AF2 /* Worm.m in Sources */,
+				C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

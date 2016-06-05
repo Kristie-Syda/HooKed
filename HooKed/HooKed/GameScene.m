@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "Worm.h"
+#import "PauseMenu.h"
 
 @implementation GameScene
 
@@ -200,6 +201,12 @@ static const uint32_t cat_world = 0x1 << 3;
         [self CreateBackground];
         [self SpawnHooks];
         [self SpawnWorms];
+        
+       
+        pause = [[PauseMenu alloc]init];
+        btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
+         NSLog(@" width = %f",btn_pause.position.x);
+        [self addChild:btn_pause];
     }
     
     return self;
@@ -235,9 +242,26 @@ static const uint32_t cat_world = 0x1 << 3;
     } else if (level == 8){
         [fish.physicsBody applyImpulse:CGVectorMake(60, 0)];
     }
+    
+    if([touched.name isEqualToString:@"pause"]){
+         self.paused = true;
+        [btn_pause removeFromParent];
+         menu = [pause createPauseMenu:CGPointMake(self.size.width/2, self.size.height/2)];
+        [self addChild:menu];
+        
+    } else if([touched.name isEqualToString:@"Resume"]){
+        self.paused = false;
+        [menu removeFromParent];
+        btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
+        NSLog(@" width = %f",btn_pause.position.x);
+        [self addChild:btn_pause];
+    } else if([touched.name isEqualToString:@"Tutorial"]){
+        NSLog(@"tutorial opens");
+    } else if([touched.name isEqualToString:@"Quit"]){
+        NSLog(@"Game Over screen");
+    }
 }
-
--(void)didBeginContact:(SKPhysicsContact *) contact {
+-(void)didBeginContact:(SKPhysicsContact *)contact {
     
     BOOL update = NO;
     SKPhysicsBody *theContact;
