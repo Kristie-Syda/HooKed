@@ -10,5 +10,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface GameViewController : UIViewController
-
+{
+    SKView * skView;
+}
 @end

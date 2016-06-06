@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "Worm.h"
 #import "PauseMenu.h"
+#import "Menu.h"
 
 @implementation GameScene
 
@@ -205,7 +206,6 @@ static const uint32_t cat_world = 0x1 << 3;
        
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
-         NSLog(@" width = %f",btn_pause.position.x);
         [self addChild:btn_pause];
     }
     
@@ -253,12 +253,11 @@ static const uint32_t cat_world = 0x1 << 3;
         self.paused = false;
         [menu removeFromParent];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
-        NSLog(@" width = %f",btn_pause.position.x);
         [self addChild:btn_pause];
     } else if([touched.name isEqualToString:@"Tutorial"]){
         NSLog(@"tutorial opens");
     } else if([touched.name isEqualToString:@"Quit"]){
-        NSLog(@"Game Over screen");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"quitGame" object:self];
     }
 }
 -(void)didBeginContact:(SKPhysicsContact *)contact {

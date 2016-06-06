@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "Register.h"
 #import "GameScene.h"
+#import "Menu.h"
 
 @implementation GameViewController
 
@@ -17,7 +18,7 @@
     [super viewDidLoad];
 
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
@@ -29,24 +30,55 @@
     scene.scaleMode = SKSceneScaleModeAspectFit;
     scene.anchorPoint = CGPointMake(0, 0);
     
-    NSLog(@"%f",skView.bounds.size.width);
-    NSLog(@"%f",skView.bounds.size.height);
+    
+    /* Notifications */
+
+    //Player wants to quit game
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(quitGame:)
+                                                 name:@"quitGame"
+                                               object:nil];
     // Present the scene.
     [skView presentScene:scene];
 }
+
+//Notification Methods
+- (void)quitGame:(NSNotification*) notification {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:@"Are you sure you want to quit?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yes = [UIAlertAction actionWithTitle:@"YES"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                       Menu *scene = [Menu sceneWithSize:skView.bounds.size];
+                                                       SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+                                                       [skView presentScene:scene transition:trans];
+                                                   }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"NO"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {
+                                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                                }];
+
+    [alert addAction:cancel];
+    [alert addAction:yes];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+
 
 - (BOOL)shouldAutorotate
 {
     return YES;
 }
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
-
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
