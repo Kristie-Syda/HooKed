@@ -23,5 +23,6 @@
     PauseMenu *pause;
     SKNode *menu;
     SKSpriteNode *btn_pause;
+    SKSpriteNode *fishBar;
 }
 @end

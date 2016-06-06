@@ -14,6 +14,7 @@
 		C44BE7651CF62D690044312A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */; };
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
 		C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */ = {isa = PBXBuildFile; fileRef = C44BE7691CF63D1D0044312A /* Forgot.m */; };
+		C4784F191D0503AC0014766B /* ScoreBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C4784F181D0503AC0014766B /* ScoreBox.m */; };
 		C48013671CF44B1500143162 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C48013661CF44B1500143162 /* main.m */; };
 		C480136A1CF44B1500143162 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C48013691CF44B1500143162 /* AppDelegate.m */; };
 		C480136D1CF44B1500143162 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C480136C1CF44B1500143162 /* GameScene.m */; };
@@ -71,6 +72,8 @@
 		C44BE7661CF62D740044312A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		C44BE7681CF63D1D0044312A /* Forgot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Forgot.h; sourceTree = "<group>"; };
 		C44BE7691CF63D1D0044312A /* Forgot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forgot.m; sourceTree = "<group>"; };
+		C4784F171D0503AC0014766B /* ScoreBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBox.h; sourceTree = "<group>"; };
+		C4784F181D0503AC0014766B /* ScoreBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBox.m; sourceTree = "<group>"; };
 		C48013621CF44B1500143162 /* HooKed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HooKed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48013661CF44B1500143162 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C48013681CF44B1500143162 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				C438205B1D0466E600964AF2 /* PauseMenu.m */,
 				C438205D1D04EF9E00964AF2 /* GameOver.h */,
 				C438205E1D04EF9E00964AF2 /* GameOver.m */,
+				C4784F171D0503AC0014766B /* ScoreBox.h */,
+				C4784F181D0503AC0014766B /* ScoreBox.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */,
 				C480136A1CF44B1500143162 /* AppDelegate.m in Sources */,
 				C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */,
+				C4784F191D0503AC0014766B /* ScoreBox.m in Sources */,
 				C48013BF1CF49E5500143162 /* Account.m in Sources */,
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,

@@ -10,6 +10,8 @@
 #import "Worm.h"
 #import "PauseMenu.h"
 #import "Menu.h"
+#import "GameOver.h"
+#import "ScoreBox.h"
 
 @implementation GameScene
 
@@ -185,6 +187,22 @@ static const uint32_t cat_world = 0x1 << 3;
     bg2.zPosition = -1;
     [self addChild:bg2];
 }
+-(void)CreateScoreBox {
+    ScoreBox *scoreBox = [[ScoreBox alloc]init];
+    SKNode *box = [scoreBox createScoreBox:CGPointMake(self.size.width/3 - 90, self.size.height - 45)];
+    fishBar = [scoreBox CreateBar:CGPointMake(20,self.frame.size.height - 32)];
+    [self addChild:fishBar];
+    [self addChild:box];
+}
+-(void)changeProgress:(int)levelNum {
+    if(levelNum == 1){
+        fishBar.size = CGSizeMake(250/3, 10);
+    } else if(levelNum == 2) {
+        fishBar.size = CGSizeMake(250/2, 10);
+    } else if(levelNum == 3){
+        fishBar.size = CGSizeMake(240,10);
+    }
+}
 
 #pragma mark - Scene Setup
 // Setup Scene
@@ -202,11 +220,13 @@ static const uint32_t cat_world = 0x1 << 3;
         [self CreateBackground];
         [self SpawnHooks];
         [self SpawnWorms];
+        [self CreateScoreBox];
         
        
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
         [self addChild:btn_pause];
+        
     }
     
     return self;
@@ -254,6 +274,7 @@ static const uint32_t cat_world = 0x1 << 3;
         [menu removeFromParent];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
         [self addChild:btn_pause];
+        
     } else if([touched.name isEqualToString:@"Tutorial"]){
         NSLog(@"tutorial opens");
     } else if([touched.name isEqualToString:@"Quit"]){
@@ -274,11 +295,17 @@ static const uint32_t cat_world = 0x1 << 3;
     
     if(theContact.categoryBitMask == cat_hook){
         NSLog(@"hook");
+        GameOver *scene = [GameOver sceneWithSize:self.size];
+        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+        [self.view presentScene:scene transition:trans];
+        
     } else if (theContact.categoryBitMask == cat_worm) {
         update = [(Worm *)theContact.node collision:fish];
         [fish removeFromParent];
         level = level + 1;
         [self CreateFish];
+        [self changeProgress:level];
+        
     }
 }
 

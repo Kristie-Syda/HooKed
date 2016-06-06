@@ -26,7 +26,7 @@
     skView.showsPhysics = YES;
     
     // Create and configure the Register/Login scene.
-    GameScene *scene = [[GameScene alloc] initWithSize:skView.bounds.size];
+    Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     scene.anchorPoint = CGPointMake(0, 0);
     
@@ -34,15 +34,14 @@
     /* Notifications */
 
     //Player wants to quit game
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(quitGame:)
-                                                 name:@"quitGame"
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
     // Present the scene.
     [skView presentScene:scene];
 }
 
 //Notification Methods
+
+//Quit Game
 - (void)quitGame:(NSNotification*) notification {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
                                                                    message:@"Are you sure you want to quit?"

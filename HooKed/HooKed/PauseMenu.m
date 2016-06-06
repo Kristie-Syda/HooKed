@@ -12,7 +12,7 @@
 
 // Button Method:
 //
-// Makes button - Adds a Label & Position
+// Makes button for Pause Menu - Adds a Label & Position
 //
 -(SKSpriteNode *)makeBtn:(NSString*)title position:(CGPoint)position {
     
@@ -34,7 +34,7 @@
      return node;
 }
 
-
+//Make Pause Button Sprite
 -(SKSpriteNode *)makePause:(CGPoint)position {
     
     SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:@"btn_pause"];
@@ -45,13 +45,13 @@
     return node;
 }
 
-//Create Pause
+//Create Pause Menu
 -(SKNode *)createPauseMenu:(CGPoint)position {
     
     SKNode *pauseMenu = [SKNode node];
     SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:@"pauseMenu"];
     pauseMenu.position = position;
-    pauseMenu.zPosition = 1;
+    pauseMenu.zPosition = 2;
     SKSpriteNode *resume = [self makeBtn:@"Resume" position:CGPointMake(self.frame.size.width/2, self.frame.size.height + 20)];
     resume.zPosition = 2;
     SKSpriteNode *tut = [self makeBtn:@"Tutorial" position:CGPointMake(self.frame.size.width/2, self.frame.size.height - 40)];
