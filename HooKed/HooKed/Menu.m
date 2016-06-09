@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "GameScene.h"
 #import "Register.h"
+#import "Leaderboard.h"
 
 @implementation Menu
 
@@ -113,7 +114,10 @@
         
     }
     else if ([touched.name isEqualToString:@"Leaderboard"]){
-        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Leaderboard *vc = [storyboard instantiateViewControllerWithIdentifier:@"Leaderboard"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
+
     }
     else if ([touched.name isEqualToString:@"LogOut"]){
         [PFUser logOut];
