@@ -91,7 +91,23 @@
     
     [User signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(!error){
-            NSLog(@"user created");
+          //Creating User
+            PFObject *userData = [PFObject objectWithClassName:@"Score"];
+            [userData setObject:[PFUser currentUser] forKey:@"Player"];
+            PFUser *user = [PFUser currentUser];
+            //fake location -- debugging purposes
+            PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:37.785834 longitude:122.406417];
+            
+            PFObject *info = [PFObject objectWithClassName:@"Score"];
+            info[@"score"] = [NSNumber numberWithInt:0];
+            info[@"Location"] = fake;
+            info[@"UserName"] = [user username];
+            info[@"Player"] = user;
+            info[@"HighScore"] = [NSNumber numberWithInt:0];
+            [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            }];
+            
+            
             //OPEN Menu Scene
             [self removeFields];
             Menu *scene = [Menu sceneWithSize:self.size];

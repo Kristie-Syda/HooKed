@@ -15,6 +15,8 @@
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
 		C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */ = {isa = PBXBuildFile; fileRef = C44BE7691CF63D1D0044312A /* Forgot.m */; };
 		C4784F191D0503AC0014766B /* ScoreBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C4784F181D0503AC0014766B /* ScoreBox.m */; };
+		C47B2C021D09404B00799FC7 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = C47B2C011D09404B00799FC7 /* Profile.m */; };
+		C47B2C051D09405F00799FC7 /* LeaderBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = C47B2C041D09405F00799FC7 /* LeaderBoard.m */; };
 		C48013671CF44B1500143162 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C48013661CF44B1500143162 /* main.m */; };
 		C480136A1CF44B1500143162 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C48013691CF44B1500143162 /* AppDelegate.m */; };
 		C480136D1CF44B1500143162 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C480136C1CF44B1500143162 /* GameScene.m */; };
@@ -74,6 +76,10 @@
 		C44BE7691CF63D1D0044312A /* Forgot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Forgot.m; sourceTree = "<group>"; };
 		C4784F171D0503AC0014766B /* ScoreBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBox.h; sourceTree = "<group>"; };
 		C4784F181D0503AC0014766B /* ScoreBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBox.m; sourceTree = "<group>"; };
+		C47B2C001D09404B00799FC7 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		C47B2C011D09404B00799FC7 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		C47B2C031D09405F00799FC7 /* LeaderBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoard.h; sourceTree = "<group>"; };
+		C47B2C041D09405F00799FC7 /* LeaderBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoard.m; sourceTree = "<group>"; };
 		C48013621CF44B1500143162 /* HooKed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HooKed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48013661CF44B1500143162 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C48013681CF44B1500143162 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				C48013651CF44B1500143162 /* Supporting Files */,
 				C480139D1CF44B9000143162 /* Menu.h */,
 				C480139E1CF44B9000143162 /* Menu.m */,
+				C47B2C031D09405F00799FC7 /* LeaderBoard.h */,
+				C47B2C041D09405F00799FC7 /* LeaderBoard.m */,
 				C48013BA1CF464D500143162 /* Register.h */,
 				C48013BB1CF464D500143162 /* Register.m */,
 				C48013BD1CF49E5500143162 /* Account.h */,
@@ -222,6 +230,8 @@
 				C438205E1D04EF9E00964AF2 /* GameOver.m */,
 				C4784F171D0503AC0014766B /* ScoreBox.h */,
 				C4784F181D0503AC0014766B /* ScoreBox.m */,
+				C47B2C001D09404B00799FC7 /* Profile.h */,
+				C47B2C011D09404B00799FC7 /* Profile.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -391,10 +401,12 @@
 				C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */,
 				C4784F191D0503AC0014766B /* ScoreBox.m in Sources */,
 				C48013BF1CF49E5500143162 /* Account.m in Sources */,
+				C47B2C021D09404B00799FC7 /* Profile.m in Sources */,
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,
 				C43820591D0426C200964AF2 /* Worm.m in Sources */,
 				C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */,
+				C47B2C051D09405F00799FC7 /* LeaderBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

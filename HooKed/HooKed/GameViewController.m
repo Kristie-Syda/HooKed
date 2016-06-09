@@ -10,6 +10,7 @@
 #import "Register.h"
 #import "GameScene.h"
 #import "Menu.h"
+#import <Parse/Parse.h>
 
 @implementation GameViewController
 
@@ -25,18 +26,33 @@
     skView.ignoresSiblingOrder = NO;
     skView.showsPhysics = YES;
     
-    // Create and configure the Register/Login scene.
-    Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFit;
-    scene.anchorPoint = CGPointMake(0, 0);
+    PFUser *currentUser = [PFUser currentUser];
+    if(currentUser){
+        Menu *scene = [[Menu alloc] initWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+        scene.anchorPoint = CGPointMake(0, 0);
+        /* Notifications */
+        
+        //Player wants to quit game
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
+        // Present the scene.
+        [skView presentScene:scene];
+        
+        
+    } else {
+        // Create and configure the Register/Login scene.
+        Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+        scene.anchorPoint = CGPointMake(0, 0);
+        /* Notifications */
+        
+        //Player wants to quit game
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
+        // Present the scene.
+        [skView presentScene:scene];
+    }
     
-    
-    /* Notifications */
-
-    //Player wants to quit game
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
-    // Present the scene.
-    [skView presentScene:scene];
+   
 }
 
 //Notification Methods

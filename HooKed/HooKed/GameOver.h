@@ -9,5 +9,12 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface GameOver : SKScene
+{
+    NSString *userName;
+    NSString *playerId;
+    int score;
+    int highScore;
+    int coins;
+}
 
 @end

@@ -12,6 +12,7 @@
 #import "Menu.h"
 #import "GameOver.h"
 #import "ScoreBox.h"
+#import <Parse/Parse.h>
 
 @implementation GameScene
 
@@ -188,9 +189,12 @@ static const uint32_t cat_world = 0x1 << 3;
     [self addChild:bg2];
 }
 -(void)CreateScoreBox {
-    ScoreBox *scoreBox = [[ScoreBox alloc]init];
+    scoreBox = [[ScoreBox alloc]init];
     SKNode *box = [scoreBox createScoreBox:CGPointMake(self.size.width/3 - 90, self.size.height - 45)];
     fishBar = [scoreBox CreateBar:CGPointMake(20,self.frame.size.height - 32)];
+    scoreLbl = [scoreBox CreateLabel:@"0"];
+    scoreLbl.position = CGPointMake(self.frame.size.width/3 - 140, self.size.height - 66);
+    [self addChild:scoreLbl];
     [self addChild:fishBar];
     [self addChild:box];
 }
@@ -202,6 +206,35 @@ static const uint32_t cat_world = 0x1 << 3;
     } else if(levelNum == 3){
         fishBar.size = CGSizeMake(240,10);
     }
+}
+-(void)GameOver {
+    
+    PFUser *current = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"Score"];
+    //Find player
+    [query whereKey:@"Player" equalTo:current];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        //Loop through player array
+        for(PFObject *player in objects){
+            playerId = [player objectId];
+            
+        }
+        
+        //Update info
+        PFQuery *info = [PFQuery queryWithClassName:@"Score"];
+        [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            object[@"score"] = [NSNumber numberWithInt:score];
+            NSLog(@"%i",score);
+            [object saveInBackground];
+        }];
+
+    }];
+    
+    
+    GameOver *scene = [GameOver sceneWithSize:self.size];
+    SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+    [self.view presentScene:scene transition:trans];
+    
 }
 
 #pragma mark - Scene Setup
@@ -215,6 +248,7 @@ static const uint32_t cat_world = 0x1 << 3;
         self.physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(-0.6, 0.0);
         level = 0;
+        score = 0;
         
         [self CreateFish];
         [self CreateBackground];
@@ -222,7 +256,6 @@ static const uint32_t cat_world = 0x1 << 3;
         [self SpawnWorms];
         [self CreateScoreBox];
         
-       
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
         [self addChild:btn_pause];
@@ -294,10 +327,7 @@ static const uint32_t cat_world = 0x1 << 3;
     }
     
     if(theContact.categoryBitMask == cat_hook){
-        NSLog(@"hook");
-        GameOver *scene = [GameOver sceneWithSize:self.size];
-        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
-        [self.view presentScene:scene transition:trans];
+        [self GameOver];
         
     } else if (theContact.categoryBitMask == cat_worm) {
         update = [(Worm *)theContact.node collision:fish];
@@ -305,7 +335,6 @@ static const uint32_t cat_world = 0x1 << 3;
         level = level + 1;
         [self CreateFish];
         [self changeProgress:level];
-        
     }
 }
 
@@ -333,6 +362,8 @@ static const uint32_t cat_world = 0x1 << 3;
 
     }
     
+    score = score + 1;
+    scoreLbl.text = [@(score)stringValue];
 }
 
 @end

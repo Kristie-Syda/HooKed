@@ -75,7 +75,7 @@
         [btnBack addChild:bLabel];
         [btnBack setPosition:CGPointMake(self.size.width/4, self.size.height - 100)];
         btnBack.zPosition = 0;
-        btnBack.name = label.text;
+        btnBack.name = bLabel.text;
         
         //Title label
         SKLabelNode *titleLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];

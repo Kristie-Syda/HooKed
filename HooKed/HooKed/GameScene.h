@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Worm.h"
 #import "PauseMenu.h"
+#import "ScoreBox.h"
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 {
@@ -24,5 +25,9 @@
     SKNode *menu;
     SKSpriteNode *btn_pause;
     SKSpriteNode *fishBar;
+    ScoreBox *scoreBox;
+    SKLabelNode *scoreLbl;
+    int score;
+    NSString *playerId;
 }
 @end

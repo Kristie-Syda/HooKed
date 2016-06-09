@@ -9,6 +9,7 @@
 #import "Menu.h"
 #import <Parse/Parse.h>
 #import "GameScene.h"
+#import "Register.h"
 
 @implementation Menu
 
@@ -79,7 +80,6 @@
         viewProfile.name = @"Profile";
         viewProfile.position = CGPointMake(self.size.width/4 - 20, self.size.height - 120);
         
-        
         [self addChild:titleLabel];
         [self addChild:play];
         [self addChild:tut];
@@ -105,18 +105,28 @@
         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
         [self.view presentScene:scene transition:trans];
     
-    } else if ([touched.name isEqualToString:@"Tutorial"]){
-        
-    } else if ([touched.name isEqualToString:@"Achievements"]){
-        
-    } else if ([touched.name isEqualToString:@"Leaderboard"]){
-        
-    } else if ([touched.name isEqualToString:@"LogOut"]){
-        
-    } else if ([touched.name isEqualToString:@"Profile"]){
+    }
+    else if ([touched.name isEqualToString:@"Tutorial"]){
         
     }
-
+    else if ([touched.name isEqualToString:@"Achievements"]){
+        
+    }
+    else if ([touched.name isEqualToString:@"Leaderboard"]){
+        
+    }
+    else if ([touched.name isEqualToString:@"LogOut"]){
+        [PFUser logOut];
+        PFUser *currentUser = [PFUser currentUser];
+        NSLog(@"%@",currentUser);
+        
+        Register *scene = [Register sceneWithSize:self.size];
+        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+        [self.view presentScene:scene transition:trans];
+    }
+    else if ([touched.name isEqualToString:@"Profile"]){
+        
+    }
 
 }
 

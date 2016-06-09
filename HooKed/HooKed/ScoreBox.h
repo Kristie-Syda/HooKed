@@ -13,6 +13,7 @@
     CGSize bar;
 }
 
+-(SKLabelNode *)CreateLabel:(NSString *)text;
 -(SKSpriteNode *)CreateBar:(CGPoint)position;
 -(SKNode *)createScoreBox:(CGPoint)position;
 @end
