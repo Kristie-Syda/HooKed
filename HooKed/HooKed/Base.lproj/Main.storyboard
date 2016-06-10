@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T6l-CS-CET">
-                                <rect key="frame" x="126" y="106" width="388" height="184"/>
+                                <rect key="frame" x="128" y="85" width="388" height="184"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" textLabel="L9g-Kb-NnS" detailTextLabel="LSD-ds-5Td" style="IBUITableViewCellStyleValue2" id="DYM-Cr-zW8">
@@ -69,11 +69,50 @@
                                     <outlet property="delegate" destination="7nP-WD-7Xs" id="XZs-fx-SpG"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSD-PG-Vbo">
+                                <rect key="frame" x="76" y="277" width="110" height="36"/>
+                                <state key="normal" title="Local" image="btn_menu"/>
+                                <connections>
+                                    <action selector="local:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="m8h-5o-O4y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wG-ns-FPA">
+                                <rect key="frame" x="267" y="276" width="110" height="36"/>
+                                <state key="normal" title="Button" image="btn_menu"/>
+                                <connections>
+                                    <action selector="gloabal:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="gQr-B3-xAQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scn-Uh-Lp3">
+                                <rect key="frame" x="438" y="277" width="110" height="36"/>
+                                <state key="normal" title="Button" image="btn_menu"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Local" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-2D-AEV">
+                                <rect key="frame" x="108" y="284" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Global" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vid-0E-iZk">
+                                <rect key="frame" x="295" y="284" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoW-me-bIO">
+                                <rect key="frame" x="463" y="284" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="btn_friends" destination="Scn-Uh-Lp3" id="A5X-7o-GUD"/>
+                        <outlet property="btn_global" destination="4wG-ns-FPA" id="fgp-Ps-Xdy"/>
+                        <outlet property="btn_local" destination="XSD-PG-Vbo" id="Ghv-CP-J5d"/>
                         <outlet property="myTable" destination="T6l-CS-CET" id="rp9-Gw-yvg"/>
                     </connections>
                 </viewController>
@@ -82,4 +121,7 @@
             <point key="canvasLocation" x="861" y="256"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_menu" width="250" height="42"/>
+    </resources>
 </document>

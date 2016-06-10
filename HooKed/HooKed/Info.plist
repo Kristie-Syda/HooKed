@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your current location for some features to work.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -44,18 +46,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb250547675301707</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>250547675301707</string>
-    <key>FacebookDisplayName</key>
-    <string>HooKed</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb250547675301707</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>250547675301707</string>
+	<key>FacebookDisplayName</key>
+	<string>HooKed</string>
 </dict>
 </plist>
