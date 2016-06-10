@@ -11,6 +11,7 @@
 
 @interface GameViewController : UIViewController
 {
-    SKView * skView;
+    SKView *skView;
+    NSString *playerId;
 }
 @end

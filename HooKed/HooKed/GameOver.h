@@ -15,6 +15,7 @@
     int score;
     int highScore;
     int coins;
+    int newCoins;
 }
 
 @end

@@ -7,7 +7,15 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Shop.h"
 
 @interface Profile : SKScene
+{
+    NSString *userName;
+    NSString *playerId;
+    int score;
+    int coins;
+
+}
 
 @end

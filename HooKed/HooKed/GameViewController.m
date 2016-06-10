@@ -11,6 +11,7 @@
 #import "GameScene.h"
 #import "Menu.h"
 #import <Parse/Parse.h>
+#import "ShopData.h"
 
 @implementation GameViewController
 
@@ -44,15 +45,19 @@
         Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFit;
         scene.anchorPoint = CGPointMake(0, 0);
-        /* Notifications */
-        
-        //Player wants to quit game
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
+      
         // Present the scene.
         [skView presentScene:scene];
     }
     
    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+     /* Notifications */
+    
+    //Player wants to quit game
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
 }
 
 //Notification Methods
@@ -81,9 +86,6 @@
     [alert addAction:yes];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-
-
 
 - (BOOL)shouldAutorotate
 {

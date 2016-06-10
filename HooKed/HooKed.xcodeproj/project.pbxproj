@@ -10,6 +10,10 @@
 		C43820591D0426C200964AF2 /* Worm.m in Sources */ = {isa = PBXBuildFile; fileRef = C43820581D0426C200964AF2 /* Worm.m */; };
 		C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205B1D0466E600964AF2 /* PauseMenu.m */; };
 		C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205E1D04EF9E00964AF2 /* GameOver.m */; };
+		C442984F1D0A75AA0097AF72 /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C442984E1D0A75AA0097AF72 /* TableCell.m */; };
+		C44298551D0AD00C0097AF72 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298541D0AD00C0097AF72 /* Shop.m */; };
+		C44298581D0AD4270097AF72 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298571D0AD4270097AF72 /* ShopCell.m */; };
+		C442985B1D0AD82C0097AF72 /* ShopData.m in Sources */ = {isa = PBXBuildFile; fileRef = C442985A1D0AD82C0097AF72 /* ShopData.m */; };
 		C44BE7631CF62D630044312A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */; };
 		C44BE7651CF62D690044312A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */; };
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
@@ -70,6 +74,14 @@
 		C438205B1D0466E600964AF2 /* PauseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenu.m; sourceTree = "<group>"; };
 		C438205D1D04EF9E00964AF2 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		C438205E1D04EF9E00964AF2 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
+		C442984D1D0A75AA0097AF72 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
+		C442984E1D0A75AA0097AF72 /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCell.m; sourceTree = "<group>"; };
+		C44298531D0AD00C0097AF72 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
+		C44298541D0AD00C0097AF72 /* Shop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shop.m; sourceTree = "<group>"; };
+		C44298561D0AD4270097AF72 /* ShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCell.h; sourceTree = "<group>"; };
+		C44298571D0AD4270097AF72 /* ShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCell.m; sourceTree = "<group>"; };
+		C44298591D0AD82C0097AF72 /* ShopData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopData.h; sourceTree = "<group>"; };
+		C442985A1D0AD82C0097AF72 /* ShopData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopData.m; sourceTree = "<group>"; };
 		C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C44BE7661CF62D740044312A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -237,6 +249,14 @@
 				C47B2C071D09466700799FC7 /* Leaderboard.m */,
 				C47B2C091D09786700799FC7 /* Data.h */,
 				C47B2C0A1D09786700799FC7 /* Data.m */,
+				C442984D1D0A75AA0097AF72 /* TableCell.h */,
+				C442984E1D0A75AA0097AF72 /* TableCell.m */,
+				C44298531D0AD00C0097AF72 /* Shop.h */,
+				C44298541D0AD00C0097AF72 /* Shop.m */,
+				C44298561D0AD4270097AF72 /* ShopCell.h */,
+				C44298571D0AD4270097AF72 /* ShopCell.m */,
+				C44298591D0AD82C0097AF72 /* ShopData.h */,
+				C442985A1D0AD82C0097AF72 /* ShopData.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -403,6 +423,7 @@
 				C48013721CF44B1500143162 /* GameViewController.m in Sources */,
 				C48013BC1CF464D500143162 /* Register.m in Sources */,
 				C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */,
+				C44298581D0AD4270097AF72 /* ShopCell.m in Sources */,
 				C47B2C0B1D09786700799FC7 /* Data.m in Sources */,
 				C480136A1CF44B1500143162 /* AppDelegate.m in Sources */,
 				C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */,
@@ -412,6 +433,9 @@
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,
 				C43820591D0426C200964AF2 /* Worm.m in Sources */,
+				C442985B1D0AD82C0097AF72 /* ShopData.m in Sources */,
+				C442984F1D0A75AA0097AF72 /* TableCell.m in Sources */,
+				C44298551D0AD00C0097AF72 /* Shop.m in Sources */,
 				C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

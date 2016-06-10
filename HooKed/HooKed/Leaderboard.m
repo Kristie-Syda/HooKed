@@ -9,6 +9,7 @@
 #import "Leaderboard.h"
 #import <Parse/Parse.h>
 #import "Data.h"
+#import "TableCell.h"
 
 @interface Leaderboard ()
 
@@ -19,7 +20,6 @@
 #pragma mark - Data Methods
 //Load Global Scores
 -(void)loadGlobal {
-    NSLog(@"loadGlobal");
     [playerArray removeAllObjects];
     current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
@@ -70,7 +70,6 @@
                 data.location = player[@"Location"];
                 data.rank = ++i;
                 
-                NSLog(@"%@",player[@"USerName"]);
                 //add to array
                 [playerArray addObject:data];
             }
@@ -98,11 +97,10 @@
     return [playerArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell"];
+    TableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell"];
     if(cell != nil){
         Data *data = [playerArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = data.name;
-        cell.detailTextLabel.text = [data.score stringValue];
+        [cell setUpCell:data.rank name:data.name score:data.score];
     }
     
     return cell;
@@ -112,8 +110,11 @@
 -(IBAction)local:(id)sender {
     [self loadLocal];
 }
--(IBAction)gloabal:(id)sender {
+-(IBAction)global:(id)sender {
     [self loadGlobal];
+}
+-(IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -69,6 +69,29 @@ static const uint32_t cat_world = 0x1 << 3;
     fish.physicsBody.categoryBitMask = cat_fish;
     fish.physicsBody.contactTestBitMask = cat_hook|cat_worm;
     [fishNode runAction:[SKAction repeatActionForever:swimming]];
+    
+    //see if player has an item
+    PFUser *current = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"Score"];
+    //Find player
+    [query whereKey:@"Player" equalTo:current];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        //Loop through player array
+        for(PFObject *player in objects){
+            playerId = [player objectId];
+        }
+        
+        //Update info
+        PFQuery *info = [PFQuery queryWithClassName:@"Score"];
+        [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+          NSString *itemName = [object objectForKey:@"ItemName"];
+            if(![itemName isEqualToString:@"NONE"]){
+                SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:itemName];
+                [fish addChild:itemNode];
+            }
+        }];        
+    }];
+
     [fish addChild:fishNode];
     [self addChild:fish];
     return fishNode;
@@ -224,7 +247,6 @@ static const uint32_t cat_world = 0x1 << 3;
         PFQuery *info = [PFQuery queryWithClassName:@"Score"];
         [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
             object[@"score"] = [NSNumber numberWithInt:score];
-            NSLog(@"%i",score);
             [object saveInBackground];
         }];
 

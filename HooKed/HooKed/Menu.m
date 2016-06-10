@@ -11,6 +11,7 @@
 #import "GameScene.h"
 #import "Register.h"
 #import "Leaderboard.h"
+#import "Profile.h"
 
 @implementation Menu
 
@@ -129,7 +130,9 @@
         [self.view presentScene:scene transition:trans];
     }
     else if ([touched.name isEqualToString:@"Profile"]){
-        
+        Profile *scene = [Profile sceneWithSize:self.size];
+        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+        [self.view presentScene:scene transition:trans];
     }
 
 }

@@ -107,9 +107,10 @@
                  info[@"UserName"] = [user username];
                  info[@"Player"] = user;
                  info[@"HighScore"] = [NSNumber numberWithInt:0];
+                 info[@"Coins"] = [NSNumber numberWithInt:0];
+                 info[@"ItemName"] = @"NONE";
                  [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                  }];
-            
             
                  //OPEN Menu Scene
                  [self removeFields];
@@ -163,7 +164,7 @@
         [btnBack addChild:bLabel];
         [btnBack setPosition:CGPointMake(self.size.width/4, self.size.height - 90)];
         btnBack.zPosition = 0;
-        btnBack.name = label.text;
+        btnBack.name = bLabel.text;
 
         
         //Title label

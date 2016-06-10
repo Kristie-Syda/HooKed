@@ -14,8 +14,5 @@
     IBOutlet UITableView *myTable;
     NSMutableArray *playerArray;
     PFUser *current;
-    IBOutlet UIButton *btn_local;
-    IBOutlet UIButton *btn_global;
-    IBOutlet UIButton *btn_friends;
 }
 @end
