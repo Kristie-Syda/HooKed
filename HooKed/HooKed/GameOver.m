@@ -97,6 +97,31 @@
                 highScore = [[object objectForKey:@"HighScore"] intValue];
                 userName = [object objectForKey:@"UserName"];
                 
+                //Achievements
+                if(score > 1000){
+                    PFQuery *info = [PFQuery queryWithClassName:@"Achievements"];
+                    [info whereKey:@"Player" equalTo:current];
+                    
+                    [info findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                        NSString *achieveId;
+                        //Loop through player array
+                        for(PFObject *player in objects){
+                            achieveId = [player objectId];
+                        }
+                        
+                        [info getObjectInBackgroundWithId:achieveId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                            object[@"A1"] = [NSNumber numberWithBool:1];
+                            if(score > 2000){
+                                object[@"A2"] = [NSNumber numberWithBool:1];
+                            }
+                            if(score > 5000){
+                                object[@"A3"] = [NSNumber numberWithBool:1];
+                            }
+                            [object saveInBackground];
+                        }];
+                    }];
+                }
+                
                 //if score is greater than highscore than update score to highscore
                 if(score > highScore){
                     NSLog(@"%i > %i",score,highScore);
@@ -157,7 +182,6 @@
         [self addChild:title_coins];
         [self addChild:btnBack];
         [self addChild:title_high];
-        
     }
     
     return self;

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "ShopData.h"
 #import "ShopCell.h"
+#import "profile.h"
 
 @interface Shop ()
 
@@ -42,7 +43,7 @@
 -(void)GrabData {
     
     items = [[NSMutableArray alloc]init];
-    
+        
     ShopData *blueShirt = [[ShopData alloc]init];
     blueShirt.price = 100;
     blueShirt.imageName = @"blueShirt";
@@ -58,6 +59,21 @@
     //add to array
     [items addObject:blueShirt];
     [items addObject:redShirt];
+}
+-(void)cantBuyItem:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+   
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"OKAY"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 -(void)buyItem:(ShopData *)data {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
@@ -96,17 +112,38 @@
         //Get info
         PFQuery *info = [PFQuery queryWithClassName:@"Score"];
         [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-
-            //deduct price from total coins
-            int newCoins = coins - sData.price;
+            NSArray *alreadyOwn = object[@"Closet"];
+            Boolean dontHave = false;
             
-            //set new coins
-            object[@"Coins"] = [NSNumber numberWithInt:newCoins];
-            //set new item in closet
-            [object addUniqueObject:sData.shopName forKey:@"Closet"];
-             object[@"ItemName"] = sData.shopName;
-            [self GrabCoins];
-            [object saveInBackground];
+            //Loop through closet
+            for(NSString *img in alreadyOwn){
+                if([img isEqualToString:data.shopName]){
+                    dontHave = true;
+                }
+            }
+            
+            //Can buy if player dont already own it
+            if(dontHave == false) {
+                //Can buy if player has enough coins
+                if(coins > sData.price) {
+                    //deduct price from total coins
+                    int newCoins = coins - sData.price;
+                    
+                    //set new coins
+                    object[@"Coins"] = [NSNumber numberWithInt:newCoins];
+                    //set new item in closet
+                    [object addUniqueObject:sData.shopName forKey:@"Closet"];
+                    object[@"ItemName"] = sData.shopName;
+                    [self GrabCoins];
+                    [object saveInBackground];
+                } else {
+                      //informs player they do not have enough coins
+                     [self cantBuyItem:@"Not enough coins in the back"];
+                }
+            } else {
+                //informs player they already own item
+                [self cantBuyItem:@"You already own this item"];
+            }
         }];
     }];
 }

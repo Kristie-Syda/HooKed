@@ -13,8 +13,12 @@
     IBOutlet UILabel *rank;
     IBOutlet UILabel *userName;
     IBOutlet UILabel *score;
+    IBOutlet UIImageView *status;
+    IBOutlet UILabel *Title;
+    IBOutlet UILabel *Details;
 }
 
 -(void)setUpCell:(int)rankNumber name:(NSString*)username score:(NSNumber *)scoreNumber;
+-(void)setUpAch:(NSString *)title Details:(NSString *)details Image:(NSNumber *)pic;
 
 @end

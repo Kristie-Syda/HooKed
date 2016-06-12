@@ -24,7 +24,6 @@ static const uint32_t cat_world = 0x1 << 3;
 #pragma mark - Game Methods
 //Fish
 -(SKSpriteNode *)CreateFish {
-    NSLog(@"level == %i", level);
     NSString *atlasName;
     
     if (level == 0){
@@ -216,7 +215,7 @@ static const uint32_t cat_world = 0x1 << 3;
     SKNode *box = [scoreBox createScoreBox:CGPointMake(self.size.width/3 - 90, self.size.height - 45)];
     fishBar = [scoreBox CreateBar:CGPointMake(20,self.frame.size.height - 32)];
     scoreLbl = [scoreBox CreateLabel:@"0"];
-    scoreLbl.position = CGPointMake(self.frame.size.width/3 - 140, self.size.height - 66);
+    scoreLbl.position = CGPointMake(self.frame.size.width/3 - 130, self.size.height - 66);
     [self addChild:scoreLbl];
     [self addChild:fishBar];
     [self addChild:box];
@@ -240,7 +239,6 @@ static const uint32_t cat_world = 0x1 << 3;
         //Loop through player array
         for(PFObject *player in objects){
             playerId = [player objectId];
-            
         }
         
         //Update info

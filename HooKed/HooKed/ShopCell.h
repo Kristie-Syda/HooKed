@@ -16,4 +16,5 @@
 }
 
 -(void)SetupCell:(int)price image:(NSString *)pic name:(NSString *)name;
+-(void)SetupCloset:(NSString*)pic name:(NSString*)name;
 @end

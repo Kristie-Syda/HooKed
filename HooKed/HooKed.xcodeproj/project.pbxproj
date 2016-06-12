@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43474511D0D50BC001C1E6A /* Closet.m in Sources */ = {isa = PBXBuildFile; fileRef = C43474501D0D50BC001C1E6A /* Closet.m */; };
 		C43820591D0426C200964AF2 /* Worm.m in Sources */ = {isa = PBXBuildFile; fileRef = C43820581D0426C200964AF2 /* Worm.m */; };
 		C438205C1D0466E600964AF2 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205B1D0466E600964AF2 /* PauseMenu.m */; };
 		C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205E1D04EF9E00964AF2 /* GameOver.m */; };
@@ -14,6 +15,8 @@
 		C44298551D0AD00C0097AF72 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298541D0AD00C0097AF72 /* Shop.m */; };
 		C44298581D0AD4270097AF72 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298571D0AD4270097AF72 /* ShopCell.m */; };
 		C442985B1D0AD82C0097AF72 /* ShopData.m in Sources */ = {isa = PBXBuildFile; fileRef = C442985A1D0AD82C0097AF72 /* ShopData.m */; };
+		C442985E1D0C83890097AF72 /* Achievements.m in Sources */ = {isa = PBXBuildFile; fileRef = C442985D1D0C83890097AF72 /* Achievements.m */; };
+		C44298641D0C9B910097AF72 /* AchData.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298631D0C9B910097AF72 /* AchData.m */; };
 		C44BE7631CF62D630044312A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */; };
 		C44BE7651CF62D690044312A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */; };
 		C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44BE7661CF62D740044312A /* FBSDKShareKit.framework */; };
@@ -68,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C434744F1D0D50BC001C1E6A /* Closet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Closet.h; sourceTree = "<group>"; };
+		C43474501D0D50BC001C1E6A /* Closet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Closet.m; sourceTree = "<group>"; };
 		C43820571D0426C200964AF2 /* Worm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Worm.h; sourceTree = "<group>"; };
 		C43820581D0426C200964AF2 /* Worm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Worm.m; sourceTree = "<group>"; };
 		C438205A1D0466E600964AF2 /* PauseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
@@ -82,6 +87,10 @@
 		C44298571D0AD4270097AF72 /* ShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCell.m; sourceTree = "<group>"; };
 		C44298591D0AD82C0097AF72 /* ShopData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopData.h; sourceTree = "<group>"; };
 		C442985A1D0AD82C0097AF72 /* ShopData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopData.m; sourceTree = "<group>"; };
+		C442985C1D0C83890097AF72 /* Achievements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Achievements.h; sourceTree = "<group>"; };
+		C442985D1D0C83890097AF72 /* Achievements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Achievements.m; sourceTree = "<group>"; };
+		C44298621D0C9B910097AF72 /* AchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchData.h; sourceTree = "<group>"; };
+		C44298631D0C9B910097AF72 /* AchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchData.m; sourceTree = "<group>"; };
 		C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C44BE7641CF62D690044312A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C44BE7661CF62D740044312A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -257,6 +266,12 @@
 				C44298571D0AD4270097AF72 /* ShopCell.m */,
 				C44298591D0AD82C0097AF72 /* ShopData.h */,
 				C442985A1D0AD82C0097AF72 /* ShopData.m */,
+				C442985C1D0C83890097AF72 /* Achievements.h */,
+				C442985D1D0C83890097AF72 /* Achievements.m */,
+				C44298621D0C9B910097AF72 /* AchData.h */,
+				C44298631D0C9B910097AF72 /* AchData.m */,
+				C434744F1D0D50BC001C1E6A /* Closet.h */,
+				C43474501D0D50BC001C1E6A /* Closet.m */,
 			);
 			path = HooKed;
 			sourceTree = "<group>";
@@ -427,12 +442,15 @@
 				C47B2C0B1D09786700799FC7 /* Data.m in Sources */,
 				C480136A1CF44B1500143162 /* AppDelegate.m in Sources */,
 				C44BE76A1CF63D1D0044312A /* Forgot.m in Sources */,
+				C442985E1D0C83890097AF72 /* Achievements.m in Sources */,
 				C4784F191D0503AC0014766B /* ScoreBox.m in Sources */,
 				C48013BF1CF49E5500143162 /* Account.m in Sources */,
 				C47B2C021D09404B00799FC7 /* Profile.m in Sources */,
 				C480136D1CF44B1500143162 /* GameScene.m in Sources */,
 				C48013671CF44B1500143162 /* main.m in Sources */,
+				C44298641D0C9B910097AF72 /* AchData.m in Sources */,
 				C43820591D0426C200964AF2 /* Worm.m in Sources */,
+				C43474511D0D50BC001C1E6A /* Closet.m in Sources */,
 				C442985B1D0AD82C0097AF72 /* ShopData.m in Sources */,
 				C442984F1D0A75AA0097AF72 /* TableCell.m in Sources */,
 				C44298551D0AD00C0097AF72 /* Shop.m in Sources */,

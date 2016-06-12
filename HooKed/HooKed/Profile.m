@@ -10,6 +10,7 @@
 #import "Menu.h"
 #import <Parse/Parse.h>
 #import "Shop.h"
+#import "Closet.h"
 
 @implementation Profile
 
@@ -76,6 +77,21 @@
         btnShop.position = CGPointMake(titleLabel.position.x + 145, self.size.height - 100);
         btnShop.name = @"shop";
         
+        //Back button w/Label added
+        SKSpriteNode *btnCloset = [SKSpriteNode spriteNodeWithImageNamed:@"btn_back"];
+        SKLabelNode *cLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
+        cLabel.text = @"Closet";
+        cLabel.name = cLabel.text;
+        cLabel.fontColor = [SKColor whiteColor];
+        cLabel.fontSize = 16;
+        cLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        cLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+        [btnCloset addChild:cLabel];
+        [btnCloset setPosition:CGPointMake(btnShop.position.x, self.size.height - 150)];
+        btnCloset.zPosition = 0;
+        btnCloset.name = cLabel.text;
+
+        
         //Grab data from parse
         PFUser *current = [PFUser currentUser];
         PFQuery *query = [PFQuery queryWithClassName:@"Score"];
@@ -130,6 +146,7 @@
         [self addChild:title_coins];
         [self addChild:titleLabel];
         [self addChild:btnBack];
+        [self addChild:btnCloset];
         [self addChild:bg];
     }
     return self;
@@ -150,7 +167,13 @@
     } else if ([touched.name isEqualToString:@"shop"]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         Shop *vc = [storyboard instantiateViewControllerWithIdentifier:@"Shop"];
-        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];    }
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
+    } else if([touched.name isEqualToString:@"Closet"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Closet *vc = [storyboard instantiateViewControllerWithIdentifier:@"Closet"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
+
+    }
 }
 
 

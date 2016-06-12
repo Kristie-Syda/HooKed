@@ -9,5 +9,5 @@
 #import "ShopData.h"
 
 @implementation ShopData
-@synthesize imageName,price,name,shopName;
+@synthesize imageName,price,name,shopName,clothes,own;
 @end

@@ -16,6 +16,4 @@
 @property(nonatomic, strong) NSNumber *score;
 @property(nonatomic, assign) int rank;
 @property(nonatomic, strong) PFGeoPoint *location;
-
-
 @end

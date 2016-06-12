@@ -12,6 +12,7 @@
 #import "Register.h"
 #import "Leaderboard.h"
 #import "Profile.h"
+#import "Achievements.h"
 
 @implementation Menu
 
@@ -112,13 +113,14 @@
         
     }
     else if ([touched.name isEqualToString:@"Achievements"]){
-        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Achievements *vc = [storyboard instantiateViewControllerWithIdentifier:@"Achievements"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
     }
     else if ([touched.name isEqualToString:@"Leaderboard"]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         Leaderboard *vc = [storyboard instantiateViewControllerWithIdentifier:@"Leaderboard"];
         [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
-
     }
     else if ([touched.name isEqualToString:@"LogOut"]){
         [PFUser logOut];
@@ -134,7 +136,6 @@
         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
         [self.view presentScene:scene transition:trans];
     }
-
 }
 
 

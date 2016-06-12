@@ -101,6 +101,7 @@
                  //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:5 longitude:5];
                  PFGeoPoint *real = point;
                  
+                 //Set up score properties
                  PFObject *info = [PFObject objectWithClassName:@"Score"];
                  info[@"score"] = [NSNumber numberWithInt:0];
                  info[@"Location"] = real;
@@ -111,7 +112,16 @@
                  info[@"ItemName"] = @"NONE";
                  [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                  }];
-            
+                 
+                 //Set up achievement properties
+                 PFObject *data = [PFObject objectWithClassName:@"Achievements"];
+                 data[@"Player"] = user;
+                 data[@"A1"] = [NSNumber numberWithBool:0];
+                 data[@"A2"] = [NSNumber numberWithBool:0];
+                 data[@"A3"] = [NSNumber numberWithBool:0];
+                 [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                 }];
+                 
                  //OPEN Menu Scene
                  [self removeFields];
                  Menu *scene = [Menu sceneWithSize:self.size];
