@@ -12,6 +12,26 @@
 
 @implementation GameOver
 
+
+#pragma mark - Facebook Button
+// Facebook Sharebutton does not work on SKScene
+-(void)didMoveToView:(SKView *)view{
+    btn_share = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width - 260, self.size.height - 250, 100, 45)];
+    [btn_share addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn_share];
+}
+// required methods
+- (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
+}
+- (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
+}
+- (void)sharerDidCancel:(id<FBSDKSharing>)sharer{
+}
+- (void)share:(id)sender {
+    [FBSDKShareDialog showFromViewController:self.view.window.rootViewController withContent:shareLink delegate:self];
+}
+
+#pragma mark - Setup Scene
 // Setup Scene
 - (instancetype)initWithSize:(CGSize)size {
     
@@ -96,6 +116,12 @@
                 newCoins = score/10;
                 highScore = [[object objectForKey:@"HighScore"] intValue];
                 userName = [object objectForKey:@"UserName"];
+                
+                shareLink = [[FBSDKShareLinkContent alloc] init];
+                shareLink.contentURL = [NSURL URLWithString:@"https://developers.facebook.com/apps/250547675301707/"];
+                shareLink.contentTitle = @"HooKed!";
+                shareLink.contentDescription = [NSString stringWithFormat:@"%@ just earned a score of %i on HooKed!", [PFUser currentUser].username,score];
+                btn_share.shareContent = shareLink;
                 
                 //Achievements
                 if(score > 1000){
@@ -187,6 +213,7 @@
     return self;
 }
 
+#pragma mark - Touches
 //Touches
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -197,11 +224,10 @@
     //Submit button
     if ([touched.name isEqualToString:@"Menu"]){
         
-       
+        [btn_share removeFromSuperview];
         Menu *scene = [Menu sceneWithSize:self.size];
         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
         [self.view presentScene:scene transition:trans];
-        
     }
 }
 
