@@ -114,6 +114,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scn-Uh-Lp3">
                                 <rect key="frame" x="438" y="295" width="110" height="36"/>
                                 <state key="normal" title="Button" image="btn_menu"/>
+                                <connections>
+                                    <action selector="friends:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="rho-DS-6US"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Local" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-2D-AEV">
                                 <rect key="frame" x="134" y="303" width="46" height="21"/>
@@ -175,7 +178,6 @@
                                 <state key="normal" title="Button" image="btn_menu"/>
                                 <connections>
                                     <action selector="back:" destination="LUe-py-TAX" eventType="touchUpInside" id="S0g-Uw-UAU"/>
-                                    <action selector="back:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="yCt-Jk-MiG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOq-3V-jYU">
@@ -281,10 +283,7 @@
                                 <rect key="frame" x="94" y="78" width="110" height="36"/>
                                 <state key="normal" title="Button" image="btn_menu"/>
                                 <connections>
-                                    <action selector="back:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="1xT-Jh-gST"/>
                                     <action selector="back:" destination="FqN-Cv-vMN" eventType="touchUpInside" id="Gfo-Fb-0i8"/>
-                                    <action selector="back:" destination="gjX-8V-P7Y" eventType="touchUpInside" id="Mjw-wN-NNG"/>
-                                    <action selector="back:" destination="LUe-py-TAX" eventType="touchUpInside" id="gSf-2y-At7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2B-gH-eNL">
@@ -393,7 +392,6 @@
                                 <state key="normal" title="Button" image="btn_menu"/>
                                 <connections>
                                     <action selector="back" destination="VTp-kw-ZKa" eventType="touchUpInside" id="AD1-tE-dyN"/>
-                                    <action selector="back:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="dFB-ot-xGF"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aev-4V-S1o">
@@ -431,8 +429,6 @@
                                 <rect key="frame" x="85" y="79" width="110" height="36"/>
                                 <state key="normal" title="Button" image="btn_menu"/>
                                 <connections>
-                                    <action selector="back:" destination="7nP-WD-7Xs" eventType="touchUpInside" id="41H-Ac-cTs"/>
-                                    <action selector="back:" destination="LUe-py-TAX" eventType="touchUpInside" id="7NJ-Ld-iLb"/>
                                     <action selector="back:" destination="gjX-8V-P7Y" eventType="touchUpInside" id="O6X-pK-am6"/>
                                 </connections>
                             </button>

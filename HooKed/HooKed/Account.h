@@ -7,8 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface Account : SKScene
+
+@interface Account : SKScene 
 {
     UITextField *first;
     UITextField *last;

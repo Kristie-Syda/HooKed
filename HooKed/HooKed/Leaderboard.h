@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @interface Leaderboard : UIViewController <UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UITableView *myTable;
     NSMutableArray *playerArray;
     PFUser *current;
+    NSArray *friendList;
 }
 @end

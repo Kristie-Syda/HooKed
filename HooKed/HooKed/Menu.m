@@ -14,6 +14,9 @@
 #import "Profile.h"
 #import "Achievements.h"
 #import "Tutorial.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
 @implementation Menu
 
@@ -128,7 +131,18 @@
     else if ([touched.name isEqualToString:@"LogOut"]){
         [PFUser logOut];
         PFUser *currentUser = [PFUser currentUser];
-        NSLog(@"%@",currentUser);
+        NSLog(@"%@ logged out",currentUser);
+        
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me/permissions"
+                                           parameters:nil
+                                           HTTPMethod:@"DELETE"]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             if (!error)
+                 NSLog(@"Revoking is successfull");
+             else
+                 NSLog(@"Failure revoking: %@", error);
+         }];
+
         
         Register *scene = [Register sceneWithSize:self.size];
         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];

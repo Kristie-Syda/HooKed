@@ -13,6 +13,7 @@
 		C438205F1D04EF9E00964AF2 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = C438205E1D04EF9E00964AF2 /* GameOver.m */; };
 		C4410D801D0E26C90046C477 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = C4410D7F1D0E26C90046C477 /* Tutorial.m */; };
 		C4410D831D0E29480046C477 /* TutData.m in Sources */ = {isa = PBXBuildFile; fileRef = C4410D821D0E29480046C477 /* TutData.m */; };
+		C4410D871D0E96580046C477 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4410D861D0E96580046C477 /* ParseFacebookUtilsV4.framework */; };
 		C442984F1D0A75AA0097AF72 /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C442984E1D0A75AA0097AF72 /* TableCell.m */; };
 		C44298551D0AD00C0097AF72 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298541D0AD00C0097AF72 /* Shop.m */; };
 		C44298581D0AD4270097AF72 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298571D0AD4270097AF72 /* ShopCell.m */; };
@@ -40,7 +41,6 @@
 		C480139F1CF44B9000143162 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = C480139E1CF44B9000143162 /* Menu.m */; };
 		C48013A11CF4611B00143162 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013A01CF4611B00143162 /* Parse.framework */; };
 		C48013A31CF4612900143162 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013A21CF4612900143162 /* Bolts.framework */; };
-		C48013A51CF4613B00143162 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013A41CF4613B00143162 /* ParseFacebookUtilsV4.framework */; };
 		C48013A71CF4616400143162 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013A61CF4616400143162 /* AudioToolbox.framework */; };
 		C48013A91CF4616E00143162 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013A81CF4616E00143162 /* CFNetwork.framework */; };
 		C48013AB1CF4617A00143162 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48013AA1CF4617A00143162 /* CoreGraphics.framework */; };
@@ -85,6 +85,7 @@
 		C4410D7F1D0E26C90046C477 /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		C4410D811D0E29480046C477 /* TutData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutData.h; sourceTree = "<group>"; };
 		C4410D821D0E29480046C477 /* TutData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutData.m; sourceTree = "<group>"; };
+		C4410D861D0E96580046C477 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		C442984D1D0A75AA0097AF72 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
 		C442984E1D0A75AA0097AF72 /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCell.m; sourceTree = "<group>"; };
 		C44298531D0AD00C0097AF72 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		C480139E1CF44B9000143162 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		C48013A01CF4611B00143162 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		C48013A21CF4612900143162 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		C48013A41CF4613B00143162 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		C48013A61CF4616400143162 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C48013A81CF4616E00143162 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C48013AA1CF4617A00143162 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,12 +165,12 @@
 				C48013AD1CF4618300143162 /* CoreLocation.framework in Frameworks */,
 				C44BE7671CF62D740044312A /* FBSDKShareKit.framework in Frameworks */,
 				C48013AB1CF4617A00143162 /* CoreGraphics.framework in Frameworks */,
+				C4410D871D0E96580046C477 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				C48013A91CF4616E00143162 /* CFNetwork.framework in Frameworks */,
 				C48013A71CF4616400143162 /* AudioToolbox.framework in Frameworks */,
 				C48013A11CF4611B00143162 /* Parse.framework in Frameworks */,
 				C44BE7631CF62D630044312A /* FBSDKCoreKit.framework in Frameworks */,
 				C48013A31CF4612900143162 /* Bolts.framework in Frameworks */,
-				C48013A51CF4613B00143162 /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +194,7 @@
 		C48013591CF44B1500143162 = {
 			isa = PBXGroup;
 			children = (
+				C4410D861D0E96580046C477 /* ParseFacebookUtilsV4.framework */,
 				C44BE7621CF62D630044312A /* FBSDKCoreKit.framework */,
 				C48013B81CF461D800143162 /* libsqlite3.tbd */,
 				C48013B61CF461BE00143162 /* libz.tbd */,
@@ -207,7 +208,6 @@
 				C48013AA1CF4617A00143162 /* CoreGraphics.framework */,
 				C48013A81CF4616E00143162 /* CFNetwork.framework */,
 				C48013A61CF4616400143162 /* AudioToolbox.framework */,
-				C48013A41CF4613B00143162 /* ParseFacebookUtilsV4.framework */,
 				C48013A21CF4612900143162 /* Bolts.framework */,
 				C48013A01CF4611B00143162 /* Parse.framework */,
 				C48013641CF44B1500143162 /* HooKed */,

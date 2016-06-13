@@ -8,7 +8,6 @@
 
 #import "Leaderboard.h"
 #import <Parse/Parse.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "Data.h"
 #import "TableCell.h"
 
@@ -80,31 +79,36 @@
     }];
 }
 //Get facebook friends score
-//-(void)getFriends{
-// 
-//
-//    // Issue a Facebook Graph API request to get your user's friend list
-//    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//        if (!error) {
-//            // result will contain an array with your user's friends in the "data" key
-//            NSArray *friendObjects = [result objectForKey:@"data"];
-//            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
-//            // Create a list of friends' Facebook IDs
-//            for (NSDictionary *friendObject in friendObjects) {
-//                [friendIds addObject:[friendObject objectForKey:@"id"]];
-//            }
-//            
-//            // Construct a PFUser query that will find friends whose facebook ids
-//            // are contained in the current user's friend list.
-//            PFQuery *friendQuery = [PFUser query];
-//            [friendQuery whereKey:@"fbId" containedIn:friendIds];
-//            
-//            // findObjects will return a list of PFUsers that are friends
-//            // with the current user
-//            NSArray *friendUsers = [friendQuery findObjects];
-//        }
-//    }];
-//}
+-(void)getFriends{
+    NSArray *permissionsArray = @[ @"public_profile", @"user_friends"];
+    if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [PFFacebookUtils linkUserInBackground:[PFUser currentUser] withReadPermissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"User linked to Facebook!");
+            }
+        }];
+    }
+
+    [playerArray removeAllObjects];
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id, name"}];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        NSArray *friendArray = [result objectForKey:@"data"];
+        NSMutableArray *idArray = [NSMutableArray arrayWithCapacity:friendArray.count];
+        
+        for(NSDictionary *friend in friendArray){
+            [idArray addObject:[friend objectForKey:@"id"]];
+        }
+        
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"authData" containedIn:idArray];
+        
+        //NSArray of friends
+        friendList = [query findObjects];
+        NSLog(@"%@",friendList);
+    }];
+    
+}
 
 #pragma mark - SetUp View
 - (void)viewDidLoad {
@@ -139,6 +143,9 @@
 }
 -(IBAction)global:(id)sender {
     [self loadGlobal];
+}
+-(IBAction)friends:(id)sender {
+    [self getFriends];
 }
 -(IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

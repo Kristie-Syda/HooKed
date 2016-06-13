@@ -7,9 +7,12 @@
 //
 
 #import "Account.h"
-#import <Parse/Parse.h>
 #import "Menu.h"
 #import "Register.h"
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @implementation Account
 
@@ -60,8 +63,6 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor whiteColor];
     password.textColor = [UIColor blackColor];
-    
-    
     
     [self.view addSubview:first];
     [self.view addSubview:last];
@@ -121,7 +122,6 @@
                  data[@"A3"] = [NSNumber numberWithBool:0];
                  [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                  }];
-                 
                  //OPEN Menu Scene
                  [self removeFields];
                  Menu *scene = [Menu sceneWithSize:self.size];
