@@ -16,12 +16,25 @@
 
 @implementation Closet
 
-
+-(void)outfitChanged {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:@"Outfit changed"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yes = [UIAlertAction actionWithTitle:@"OKAY"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {
+                                                    [alert dismissViewControllerAnimated:YES completion:nil];
+                                                }];
+    [alert addAction:yes];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 -(void)chooseItem:(NSString *)item {
     PFQuery *info = [PFQuery queryWithClassName:@"Score"];
     [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         
         object[@"ItemName"] = item;
+        [self outfitChanged];
         [object saveInBackground];
     }];
 }

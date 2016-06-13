@@ -13,6 +13,7 @@
 #import "Leaderboard.h"
 #import "Profile.h"
 #import "Achievements.h"
+#import "Tutorial.h"
 
 @implementation Menu
 
@@ -65,7 +66,7 @@
         SKSpriteNode *play = [self makeBtn:@"Play Game" position:CGPointMake(titleLabel.position.x, titleLabel.position.y - 50)];
         
         //Tutorial
-        SKSpriteNode *tut = [self makeBtn:@"Tutorial" position:CGPointMake(play.position.x, play.position.y - 50)];
+        SKSpriteNode *tut = [self makeBtn:@"Game Guide" position:CGPointMake(play.position.x, play.position.y - 50)];
         
         //Achievements
         SKSpriteNode *ach = [self makeBtn:@"Achievements" position:CGPointMake(tut.position.x, tut.position.y - 50)];
@@ -109,8 +110,10 @@
         [self.view presentScene:scene transition:trans];
     
     }
-    else if ([touched.name isEqualToString:@"Tutorial"]){
-        
+    else if ([touched.name isEqualToString:@"Game Guide"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Tutorial *vc = [storyboard instantiateViewControllerWithIdentifier:@"Tutorial"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
     }
     else if ([touched.name isEqualToString:@"Achievements"]){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

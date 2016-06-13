@@ -23,7 +23,7 @@ static const uint32_t cat_world = 0x1 << 3;
 
 #pragma mark - Game Methods
 //Fish
--(SKSpriteNode *)CreateFish {
+-(void)CreateFish {
     NSString *atlasName;
     
     if (level == 0){
@@ -93,7 +93,6 @@ static const uint32_t cat_world = 0x1 << 3;
 
     [fish addChild:fishNode];
     [self addChild:fish];
-    return fishNode;
 }
 //Hooks
 -(SKSpriteNode *)CreateHooks {

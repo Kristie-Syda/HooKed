@@ -98,7 +98,7 @@
             
              [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
                  //fake location -- debugging purposes
-                 //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:5 longitude:5];
+                // PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
                  PFGeoPoint *real = point;
                  
                  //Set up score properties
