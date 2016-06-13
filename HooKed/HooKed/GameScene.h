@@ -29,5 +29,6 @@
     SKLabelNode *scoreLbl;
     int score;
     NSString *playerId;
+    SKSpriteNode *startBtn;
 }
 @end

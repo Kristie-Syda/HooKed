@@ -13,6 +13,7 @@
 #import "GameOver.h"
 #import "ScoreBox.h"
 #import <Parse/Parse.h>
+#import "Tutorial.h"
 
 @implementation GameScene
 
@@ -63,7 +64,6 @@ static const uint32_t cat_world = 0x1 << 3;
     fish.name = @"fish";
     fish.zPosition = 0;
     fish.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:fishNode.size];
-    fish.physicsBody.dynamic = NO;
     fish.physicsBody.allowsRotation = NO;
     fish.physicsBody.categoryBitMask = cat_fish;
     fish.physicsBody.contactTestBitMask = cat_hook|cat_worm;
@@ -228,6 +228,24 @@ static const uint32_t cat_world = 0x1 << 3;
         fishBar.size = CGSizeMake(240,10);
     }
 }
+//start button
+-(SKSpriteNode *)createStart {
+    //Back button w/Label added
+    SKSpriteNode *btnStart = [SKSpriteNode spriteNodeWithImageNamed:@"btn_back"];
+    SKLabelNode *bLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
+    bLabel.text = @"Start";
+    bLabel.name = bLabel.text;
+    bLabel.fontColor = [SKColor whiteColor];
+    bLabel.fontSize = 16;
+    bLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+    bLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+    [btnStart addChild:bLabel];
+    [btnStart setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
+    btnStart.zPosition = 1;
+    btnStart.name = bLabel.text;
+    return btnStart;
+}
+//Game Over
 -(void)GameOver {
     
     PFUser *current = [PFUser currentUser];
@@ -271,14 +289,14 @@ static const uint32_t cat_world = 0x1 << 3;
         
         [self CreateFish];
         [self CreateBackground];
-        [self SpawnHooks];
-        [self SpawnWorms];
         [self CreateScoreBox];
+        startBtn = [self createStart];
+        [self addChild:startBtn];
+        fish.physicsBody.dynamic = NO;
         
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
         [self addChild:btn_pause];
-        
     }
     
     return self;
@@ -292,7 +310,6 @@ static const uint32_t cat_world = 0x1 << 3;
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     
-    fish.physicsBody.dynamic = YES;
     fish.physicsBody.velocity = CGVectorMake(0, 0);
     
     if (level == 0){
@@ -328,9 +345,16 @@ static const uint32_t cat_world = 0x1 << 3;
         [self addChild:btn_pause];
         
     } else if([touched.name isEqualToString:@"Tutorial"]){
-        NSLog(@"tutorial opens");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        Tutorial *vc = [storyboard instantiateViewControllerWithIdentifier:@"Tutorial"];
+        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
     } else if([touched.name isEqualToString:@"Quit"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"quitGame" object:self];
+    } else if ([touched.name isEqualToString:@"Start"]){
+        [self SpawnHooks];
+        [self SpawnWorms];
+        [startBtn removeFromParent];
+        fish.physicsBody.dynamic = YES;
     }
 }
 -(void)didBeginContact:(SKPhysicsContact *)contact {
@@ -363,6 +387,8 @@ static const uint32_t cat_world = 0x1 << 3;
     
     //Background Movement
     if(fish.position.x > self.size.width/2){
+        score = score + 1;
+        scoreLbl.text = [@(score)stringValue];
         
         bg.position = CGPointMake(bg.position.x-3, bg.position.y);
         bg1.position = CGPointMake(bg1.position.x-3,bg1.position.y);
@@ -378,11 +404,7 @@ static const uint32_t cat_world = 0x1 << 3;
             if(bg2.position.x < -bg2.size.width){
                 bg2.position = CGPointMake(bg1.position.x + bg1.size.width, bg2.position.y);
             }
-
     }
-    
-    score = score + 1;
-    scoreLbl.text = [@(score)stringValue];
 }
 
 @end
