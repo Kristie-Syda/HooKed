@@ -24,7 +24,7 @@ static const uint32_t cat_world = 0x1 << 3;
 
 #pragma mark - Game Methods
 //Fish
--(void)CreateFish {
+-(void)CreateFish:(CGPoint)location {
     NSString *atlasName;
     
     if (level == 0){
@@ -60,7 +60,7 @@ static const uint32_t cat_world = 0x1 << 3;
     fish = [SKNode node];
     SKSpriteNode *fishNode = [SKSpriteNode spriteNodeWithTexture:swimTextures[0]];
     //SKSpriteNode *fishNode = [SKSpriteNode spriteNodeWithImageNamed:@"swim1"];
-    fish.position = CGPointMake(self.size.width/4, self.size.height/2);
+    fish.position = location;
     fish.name = @"fish";
     fish.zPosition = 0;
     fish.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:fishNode.size];
@@ -262,16 +262,13 @@ static const uint32_t cat_world = 0x1 << 3;
         PFQuery *info = [PFQuery queryWithClassName:@"Score"];
         [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
             object[@"score"] = [NSNumber numberWithInt:score];
+            NSLog(@"score == %i",score);
             [object saveInBackground];
         }];
-
     }];
-    
-    
     GameOver *scene = [GameOver sceneWithSize:self.size];
     SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
     [self.view presentScene:scene transition:trans];
-    
 }
 
 #pragma mark - Scene Setup
@@ -287,7 +284,7 @@ static const uint32_t cat_world = 0x1 << 3;
         level = 0;
         score = 0;
         
-        [self CreateFish];
+        [self CreateFish:CGPointMake(self.size.width/4, self.size.height/2)];
         [self CreateBackground];
         [self CreateScoreBox];
         startBtn = [self createStart];
@@ -373,10 +370,11 @@ static const uint32_t cat_world = 0x1 << 3;
         [self GameOver];
         
     } else if (theContact.categoryBitMask == cat_worm) {
-        update = [(Worm *)theContact.node collision:fish];
         [fish removeFromParent];
         level = level + 1;
-        [self CreateFish];
+        [self CreateFish:theContact.node.position];
+        update = [(Worm *)theContact.node collision:fish];
+        score = score + 50;
         [self changeProgress:level];
     }
 }

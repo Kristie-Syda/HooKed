@@ -99,7 +99,7 @@
             
              [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
                  //fake location -- debugging purposes
-                // PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
+                 //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
                  PFGeoPoint *real = point;
                  
                  //Set up score properties
@@ -132,7 +132,6 @@
             NSLog(@"Something went wrong while creating user");
         }
     }];
-    
 }
 
 // Setup Scene

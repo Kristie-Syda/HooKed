@@ -12,7 +12,6 @@
 
 @implementation GameOver
 
-
 #pragma mark - Facebook Button
 // Facebook Sharebutton does not work on SKScene
 -(void)didMoveToView:(SKView *)view{
@@ -20,7 +19,7 @@
     [btn_share addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn_share];
 }
-// required methods
+// required methods for facebook share button
 - (void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results{
 }
 - (void)sharer:(id<FBSDKSharing>)sharer didFailWithError:(NSError *)error{
@@ -62,7 +61,7 @@
         
         //Score Title Label
         SKLabelNode *title_score = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
-        title_score.text = @"Score:";
+        title_score.text = @" Score:";
         title_score.fontColor = [SKColor blackColor];
         title_score.fontSize = 20;
         title_score.position = CGPointMake(self.size.width/3 - 20, self.size.height - 230);
@@ -70,7 +69,7 @@
         
         //Coins Title Label
         SKLabelNode *title_coins = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
-        title_coins.text = @"Coins Earned:";
+        title_coins.text = @" Coins Earned:";
         title_coins.fontColor = [SKColor blackColor];
         title_coins.fontSize = 20;
         title_coins.position = CGPointMake(self.size.width/3 - 20, self.size.height - 280);
@@ -78,7 +77,7 @@
         
         //Highscore Title Label
         SKLabelNode *title_high = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
-        title_high.text = @"Highscore:";
+        title_high.text = @" Highscore:";
         title_high.fontColor = [SKColor blackColor];
         title_high.fontSize = 20;
         title_high.position = CGPointMake(self.size.width/3 - 20, self.size.height - 320);
@@ -165,7 +164,7 @@
                 lbl_user.text = userName;
                 lbl_user.fontColor = [SKColor blackColor];
                 lbl_user.fontSize = 20;
-                lbl_user.position = CGPointMake(self.size.width/3 - 40 + title_user.frame.size.width, self.size.height - 180);
+                lbl_user.position = CGPointMake(self.size.width/3 - 30 + title_user.frame.size.width, self.size.height - 180);
                 lbl_user.zPosition = 1;
                 
                 //Score label
@@ -198,7 +197,6 @@
                 [self addChild:lbl_coins];
                 
             }];
-            
         }];
 
         [self addChild:bg];

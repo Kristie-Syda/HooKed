@@ -18,7 +18,10 @@
 {
     IBOutlet UITableView *myTable;
     NSMutableArray *playerArray;
+    NSMutableArray *idArray;
     PFUser *current;
-    NSArray *friendList;
+    IBOutlet UILabel *type;
+    int i;
+    
 }
 @end

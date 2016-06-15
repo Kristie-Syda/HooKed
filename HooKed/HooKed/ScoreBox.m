@@ -43,13 +43,11 @@
     nextFish.fontSize = 12;
     nextFish.position = CGPointMake(-95, self.frame.size.height/2 - 2);
     
-    
     SKLabelNode *scoreCount = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
     scoreCount.text = @"Score:";
     scoreCount.fontSize = 16;
     scoreCount.fontColor = [SKColor whiteColor];
     scoreCount.position = CGPointMake(-90, self.frame.size.height/2 - 20);
-    NSLog(@" label position.x = %f , label width = %f", scoreCount.position.x, scoreCount.frame.size.width);
     
     [node addChild:nextFish];
     [node addChild:scoreCount];

@@ -20,13 +20,14 @@
 #pragma mark - Data Methods
 //Load Global Scores
 -(void)loadGlobal {
+    type.text = @"Global";
     [playerArray removeAllObjects];
     current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     [query orderByDescending:@"HighScore"];
     [query whereKey:@"HighScore" greaterThan:@0];
     [query findObjectsInBackgroundWithBlock:^(NSArray *all, NSError *error) {
-        int i = 0;
+        i = 0;
         //loop through data and create custom object
         for (PFObject *player in all) {
 
@@ -46,7 +47,7 @@
 }
 //Load Local Scores
 -(void)loadLocal {
-   
+    type.text = @"Local";
     [playerArray removeAllObjects];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     [query orderByDescending:@"HighScore"];
@@ -59,7 +60,7 @@
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             
-            int i = 0;
+            i = 0;
             //loop through data and create custom object
             for (PFObject *player in objects) {
                 
@@ -80,34 +81,77 @@
 }
 //Get facebook friends score
 -(void)getFriends{
+    type.text = @"Facebook Friends";
+    [playerArray removeAllObjects];
+    
+    //For first time players
     NSArray *permissionsArray = @[ @"public_profile", @"user_friends"];
     if (![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         [PFFacebookUtils linkUserInBackground:[PFUser currentUser] withReadPermissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"User linked to Facebook!");
+                FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields":@"id"}];
+                [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        // Store the current user's Facebook ID on the user
+                        [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                                 forKey:@"FB"];
+                        [[PFUser currentUser] saveInBackground];
+                    }
+                }];
+            } else {
+                NSLog(@"User denied facebook");
             }
         }];
     }
-
-    [playerArray removeAllObjects];
     
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id, name"}];
+    //Find out friend info
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me/friends" parameters:@{@"fields": @"id"}];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        NSArray *friendArray = [result objectForKey:@"data"];
-        NSMutableArray *idArray = [NSMutableArray arrayWithCapacity:friendArray.count];
+        NSArray *dataArray = [result objectForKey:@"data"];
+        idArray = [[NSMutableArray alloc]init];
         
-        for(NSDictionary *friend in friendArray){
-            [idArray addObject:[friend objectForKey:@"id"]];
+        if(dataArray){
+            //grab id's of friends
+            for(NSMutableDictionary *friendId in dataArray){
+                NSString *idNumber = [friendId objectForKey:@"id"];
+                [idArray addObject:idNumber];
+            }
+        
+            //Find the id's in parse
+            PFQuery *query = [PFUser query];
+            [query whereKey:@"FB" containedIn:idArray];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
+                i = 0;
+                for(PFObject *object in objects) {
+                    //Find out player id's for all
+                    PFQuery *score = [PFQuery queryWithClassName:@"Score"];
+                    [score whereKey:@"Player" equalTo:object];
+                    [score orderByDescending:@"HighScore"];
+                    [score findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                        //Loop through player array
+                        for(PFObject *player in objects){
+                         //Get info of friends
+                            PFQuery *info = [PFQuery queryWithClassName:@"Score"];
+                            [info getObjectInBackgroundWithId:[player objectId] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                //Loop through data and create custom object
+                                for (PFObject *player in objects) {
+                                    Data *data = [[Data alloc]init];
+                                    data.name = player[@"UserName"];
+                                    data.score = player[@"score"];
+                                    data.rank = ++i;
+                                    //Add to main array
+                                    [playerArray addObject:data];
+                                }
+                                //Reload data while in this method to finish loading
+                                [myTable reloadData];
+                            }];
+                        }
+                    }];
+                }
+            }];
         }
-        
-        PFQuery *query = [PFUser query];
-        [query whereKey:@"authData" containedIn:idArray];
-        
-        //NSArray of friends
-        friendList = [query findObjects];
-        NSLog(@"%@",friendList);
     }];
-    
 }
 
 #pragma mark - SetUp View

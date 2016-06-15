@@ -114,7 +114,7 @@
                 lbl_user.text = userName;
                 lbl_user.fontColor = [SKColor blackColor];
                 lbl_user.fontSize = 20;
-                lbl_user.position = CGPointMake(self.size.width/3 - 40 + title_user.frame.size.width, self.size.height - 180);
+                lbl_user.position = CGPointMake(self.size.width/3 - 30 + title_user.frame.size.width, self.size.height - 180);
                 lbl_user.zPosition = 1;
                 
                 //Score label
