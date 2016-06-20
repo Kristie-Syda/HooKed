@@ -105,6 +105,20 @@
     return self;
 }
 
+//Alert Method
+-(void)sendAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"OKAY"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    [alert addAction:cancel];
+    [self.view.window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
 //Touches
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -115,13 +129,17 @@
     //Submit button
     if ([touched.name isEqualToString:@"Submit"]){
         
-        [PFUser requestPasswordResetForEmailInBackground:email.text];
-        
-        [self removeFields];
-        Register *scene = [Register sceneWithSize:self.size];
-        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
-        [self.view presentScene:scene transition:trans];
-        
+        [PFUser requestPasswordResetForEmailInBackground:email.text block:^(BOOL succeeded, NSError * _Nullable error) {
+            if(error){
+                [self sendAlert:error.localizedDescription];
+            } else {
+                [self sendAlert:@"Email Sent"];
+                [self removeFields];
+                Register *scene = [Register sceneWithSize:self.size];
+                SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+                [self.view presentScene:scene transition:trans];
+            }
+        }];
     } else if ([touched.name isEqualToString:@"Back"]){
         
         [self removeFields];

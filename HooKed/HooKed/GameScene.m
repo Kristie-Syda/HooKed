@@ -27,24 +27,42 @@ static const uint32_t cat_world = 0x1 << 3;
 -(void)CreateFish:(CGPoint)location {
     NSString *atlasName;
     
-    if (level == 0){
+    if ((level == 0)|(level>17)){
         atlasName = @"swim";
     }else if (level == 1){
         atlasName = @"swim1";
     }else if (level == 2){
         atlasName = @"swim2";
     } else if (level == 3){
-        atlasName = @"swim";
+        atlasName = @"fish1_1";
     } else if (level == 4){
-        atlasName = @"swim";
+        atlasName = @"fish1_2";
     } else if (level == 5){
-        atlasName = @"swim";
+        atlasName = @"fish1_3";
     } else if (level == 6){
-        atlasName = @"swim";
+        atlasName = @"fish2_1";
     } else if (level == 7){
-        atlasName = @"swim";
+        atlasName = @"fish2_2";
     } else if (level == 8){
-        atlasName = @"swim";
+        atlasName = @"fish2_3";
+    } else if (level == 9) {
+        atlasName = @"fish3_1";
+    } else if (level == 10){
+        atlasName = @"fish3_2";
+    } else if (level == 11){
+        atlasName = @"fish3_3";
+    } else if (level == 12){
+        atlasName = @"fish4_1";
+    } else if (level == 13){
+        atlasName = @"fish4_2";
+    } else if (level == 14){
+        atlasName = @"fish4_3";
+    } else if (level == 15){
+        atlasName = @"fish5_1";
+    } else if (level == 16) {
+        atlasName = @"fish5_2";
+    } else if (level == 17){
+        atlasName = @"fish5_3";
     }
 
     //Fish texture/Animation
@@ -54,12 +72,11 @@ static const uint32_t cat_world = 0x1 << 3;
     for (NSString *name in textureNames) {
         [swimTextures addObject: [atlas textureNamed: name]];
     }
-    SKAction *swimming = [SKAction animateWithTextures:swimTextures timePerFrame:0.2];
+    SKAction *swimming = [SKAction animateWithTextures:swimTextures timePerFrame:0.5];
     
     //Fish Node
     fish = [SKNode node];
     SKSpriteNode *fishNode = [SKSpriteNode spriteNodeWithTexture:swimTextures[0]];
-    //SKSpriteNode *fishNode = [SKSpriteNode spriteNodeWithImageNamed:@"swim1"];
     fish.position = location;
     fish.name = @"fish";
     fish.zPosition = 0;
@@ -83,10 +100,53 @@ static const uint32_t cat_world = 0x1 << 3;
         //Update info
         PFQuery *info = [PFQuery queryWithClassName:@"Score"];
         [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-          NSString *itemName = [object objectForKey:@"ItemName"];
+            NSString *itemName = [object objectForKey:@"ItemName"];
+            NSString *fish2 = [NSString stringWithFormat:@"%@%@",itemName,@"2"];
+            NSString *fish3 = [NSString stringWithFormat:@"%@%@",itemName,@"3"];
+            NSString *fish4 = [NSString stringWithFormat:@"%@%@",itemName,@"4"];
+            NSString *fish5 = [NSString stringWithFormat:@"%@%@",itemName,@"5"];
+            NSString *fish6 = [NSString stringWithFormat:@"%@%@",itemName,@"6"];
+            
             if(![itemName isEqualToString:@"NONE"]){
-                SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:itemName];
-                [fish addChild:itemNode];
+                if(level < 3){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:itemName];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    [fish addChild:itemNode];
+
+                } else if((level > 2)&&(level < 6)){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:fish2];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    [fish addChild:itemNode];
+                    
+                } else if((level > 5) && (level < 9)){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:fish3];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    itemNode.position = CGPointMake(0, 5);
+                    [fish addChild:itemNode];
+                    
+                } else if((level > 8) && (level < 12)){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:fish4];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    [fish addChild:itemNode];
+                    
+                } else if((level > 11) && (level < 15)){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:fish6];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    itemNode.position = CGPointMake(0, 5);
+                    [fish addChild:itemNode];
+                    
+                } else if ((level > 14)&&(level < 18)){
+                    NSLog(@"level = %i",level);
+                    SKSpriteNode *itemNode = [SKSpriteNode spriteNodeWithImageNamed:fish5];
+                    itemNode.size = CGSizeMake(fishNode.size.width, fishNode.size.height);
+                    itemNode.position = CGPointMake(0, 10);
+                    [fish addChild:itemNode];
+                }
             }
         }];        
     }];
@@ -94,9 +154,11 @@ static const uint32_t cat_world = 0x1 << 3;
     [fish addChild:fishNode];
     [self addChild:fish];
 }
+
 //Hooks
 -(SKSpriteNode *)CreateHooks {
     
+    //hook speed changes with level
     if (level == 0){
         time = 5;
     }else if (level == 1){
@@ -115,7 +177,26 @@ static const uint32_t cat_world = 0x1 << 3;
         time = 1.5;
     } else if (level == 8){
         time = 1.0;
+    } else if (level == 9){
+        time = 0.8;
+    }else if (level == 10){
+        time = 0.7;
+    }else if (level == 11){
+        time = 0.6;
+    } else if (level == 12){
+        time = 0.5;
+    } else if (level == 13){
+        time = 1.0;
+    } else if (level == 14){
+        time = 0.9;
+    } else if (level == 15){
+        time = 0.8;
+    } else if (level == 16){
+        time = 0.7;
+    } else if (level == 17){
+        time = 0.5;
     }
+
     
     //Random number generator with width size
     int rand = arc4random()%(int)self.size.width;
@@ -148,6 +229,7 @@ static const uint32_t cat_world = 0x1 << 3;
     SKAction *spawning = [SKAction repeatActionForever:spawnSeq];
     [self runAction:spawning];
 }
+
 //Worms
 -(Worm *)CreateWorms{
     
@@ -188,6 +270,8 @@ static const uint32_t cat_world = 0x1 << 3;
     SKAction *spawning = [SKAction repeatActionForever:spawnSeq];
     [self runAction:spawning];
 }
+
+//Background
 -(void)CreateBackground {
     
     //Background
@@ -209,6 +293,8 @@ static const uint32_t cat_world = 0x1 << 3;
     bg2.zPosition = -1;
     [self addChild:bg2];
 }
+
+//Score Box
 -(void)CreateScoreBox {
     scoreBox = [[ScoreBox alloc]init];
     SKNode *box = [scoreBox createScoreBox:CGPointMake(self.size.width/3 - 90, self.size.height - 45)];
@@ -220,14 +306,45 @@ static const uint32_t cat_world = 0x1 << 3;
     [self addChild:box];
 }
 -(void)changeProgress:(int)levelNum {
-    if(levelNum == 1){
-        fishBar.size = CGSizeMake(250/3, 10);
-    } else if(levelNum == 2) {
-        fishBar.size = CGSizeMake(250/2, 10);
-    } else if(levelNum == 3){
-        fishBar.size = CGSizeMake(240,10);
-    }
+    if((level == 0)|(level>17)){
+        level=0;
+        fishBar.size = CGSizeMake(0, 10);}
+    else if(levelNum == 1){
+        fishBar.size = CGSizeMake(250/3, 10);}
+    else if(levelNum == 2) {
+        fishBar.size = CGSizeMake(250/2 + 30, 10);}
+    else if(levelNum == 3){
+        fishBar.size = CGSizeMake(0,10);}
+    else if(levelNum == 4) {
+        fishBar.size = CGSizeMake(250/3,10);}
+    else if(levelNum == 5) {
+        fishBar.size = CGSizeMake(250/2 + 30, 10);}
+    else if(levelNum == 6) {
+        fishBar.size = CGSizeMake(0, 10);}
+    else if(levelNum == 7){
+        fishBar.size = CGSizeMake(250/3,10);}
+    else if(levelNum == 8) {
+        fishBar.size = CGSizeMake(250/2 + 30,10);}
+    else if(levelNum == 9) {
+        fishBar.size = CGSizeMake(0, 10);}
+    else if(levelNum == 10) {
+        fishBar.size = CGSizeMake(250/3, 10);}
+    else if(levelNum == 11){
+        fishBar.size = CGSizeMake(250/2 + 30,10);}
+    else if(levelNum == 12) {
+        fishBar.size = CGSizeMake(0,10);}
+    else if(levelNum == 13) {
+        fishBar.size = CGSizeMake(250/3, 10);}
+    else if(levelNum == 14) {
+        fishBar.size = CGSizeMake(250/2 + 30, 10);}
+    else if(levelNum == 15){
+        fishBar.size = CGSizeMake(0,10);}
+    else if(levelNum == 16) {
+        fishBar.size = CGSizeMake(250/3,10);}
+    else if(levelNum == 17) {
+        fishBar.size = CGSizeMake(250/2 + 30, 10);}
 }
+
 //start button
 -(SKSpriteNode *)createStart {
     //Back button w/Label added
@@ -247,28 +364,20 @@ static const uint32_t cat_world = 0x1 << 3;
 }
 //Game Over
 -(void)GameOver {
+    [musicPlayer stop];
+    [self runAction:over];
     
-    PFUser *current = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"Score"];
-    //Find player
-    [query whereKey:@"Player" equalTo:current];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        //Loop through player array
-        for(PFObject *player in objects){
-            playerId = [player objectId];
-        }
-        
-        //Update info
-        PFQuery *info = [PFQuery queryWithClassName:@"Score"];
-        [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-            object[@"score"] = [NSNumber numberWithInt:score];
-            NSLog(@"score == %i",score);
-            [object saveInBackground];
-        }];
-    }];
-    GameOver *scene = [GameOver sceneWithSize:self.size];
-    SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
-    [self.view presentScene:scene transition:trans];
+    SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
+    label.text = @"Game Over";
+    label.fontSize = 40;
+    label.fontColor = [SKColor blackColor];
+    label.position = CGPointMake(0, 0);
+
+    SKAction *move = [SKAction moveTo:CGPointMake(self.size.width/2, self.size.height/2) duration:0.4];
+    [label runAction:move];
+    
+    [self addChild:label];
+
 }
 
 #pragma mark - Scene Setup
@@ -276,11 +385,11 @@ static const uint32_t cat_world = 0x1 << 3;
 - (instancetype)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
-        
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.physicsBody.contactTestBitMask = cat_world;
         self.physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(-0.6, 0.0);
+        gameOver = false;
         level = 0;
         score = 0;
         
@@ -294,8 +403,13 @@ static const uint32_t cat_world = 0x1 << 3;
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
         [self addChild:btn_pause];
+        
+        //Music/SFX
+        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Pelican" ofType:@"caf"]];
+        musicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        over = [SKAction playSoundFileNamed:@"over.caf" waitForCompletion:NO];
+        eating = [SKAction playSoundFileNamed:@"eating.caf" waitForCompletion:NO];
     }
-    
     return self;
 }
 
@@ -307,51 +421,93 @@ static const uint32_t cat_world = 0x1 << 3;
     CGPoint location = [touch locationInNode:self];
     SKNode *touched = [self nodeAtPoint:location];
     
-    fish.physicsBody.velocity = CGVectorMake(0, 0);
+    if(gameOver == false) {
+        fish.physicsBody.velocity = CGVectorMake(0, 0);
     
-    if (level == 0){
-        [fish.physicsBody applyImpulse:CGVectorMake(20, 0)];
-    }else if (level == 1){
-        [fish.physicsBody applyImpulse:CGVectorMake(25, 0)];
-    }else if (level == 2){
-        [fish.physicsBody applyImpulse:CGVectorMake(30, 0)];
-    } else if (level == 3){
-        [fish.physicsBody applyImpulse:CGVectorMake(35, 0)];
-    } else if (level == 4){
-        [fish.physicsBody applyImpulse:CGVectorMake(40, 0)];
-    } else if (level == 5){
-        [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];
-    } else if (level == 6){
-        [fish.physicsBody applyImpulse:CGVectorMake(50, 0)];
-    } else if (level == 7){
-        [fish.physicsBody applyImpulse:CGVectorMake(55, 0)];
-    } else if (level == 8){
-        [fish.physicsBody applyImpulse:CGVectorMake(60, 0)];
-    }
-    
-    if([touched.name isEqualToString:@"pause"]){
-         self.paused = true;
-        [btn_pause removeFromParent];
-         menu = [pause createPauseMenu:CGPointMake(self.size.width/2, self.size.height/2)];
-        [self addChild:menu];
+        //Fish gets faster the higher the level
+        if ((level == 0)|(level>17)){
+        [fish.physicsBody applyImpulse:CGVectorMake(20, 0)];}
+        else if (level == 1){
+        [fish.physicsBody applyImpulse:CGVectorMake(25, 0)];}
+        else if (level == 2){
+        [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];}
+        else if (level == 3){
+        [fish.physicsBody applyImpulse:CGVectorMake(30, 0)];}
+        else if (level == 4){
+        [fish.physicsBody applyImpulse:CGVectorMake(35, 0)];}
+        else if (level == 5){
+            [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];
+        }
+        else if (level == 6){
+            [fish.physicsBody applyImpulse:CGVectorMake(50, 0)];
+        }
+        else if (level == 7){
+            [fish.physicsBody applyImpulse:CGVectorMake(55, 0)];}
+        else if (level == 8){
+            [fish.physicsBody applyImpulse:CGVectorMake(60, 0)];
+        }
+        else if (level == 9){
+            [fish.physicsBody applyImpulse:CGVectorMake(65, 0)];
+        }
+        else if (level == 10){
+            [fish.physicsBody applyImpulse:CGVectorMake(70, 0)];
+        }
+        else if (level == 11){
+            [fish.physicsBody applyImpulse:CGVectorMake(75, 0)];
+        }
+        else if (level == 12){
+            [fish.physicsBody applyImpulse:CGVectorMake(80, 0)];
+        }
+        else if (level == 13){
+            [fish.physicsBody applyImpulse:CGVectorMake(85, 0)];
+        }
+        else if (level == 14){
+            [fish.physicsBody applyImpulse:CGVectorMake(90, 0)];
+        }
+        else if (level == 15){
+            [fish.physicsBody applyImpulse:CGVectorMake(95, 0)];
+        }
+        else if (level == 16){
+            [fish.physicsBody applyImpulse:CGVectorMake(100, 0)];
+        }
+        else if (level == 17){
+            [fish.physicsBody applyImpulse:CGVectorMake(105, 0)];
+        }
+
         
-    } else if([touched.name isEqualToString:@"Resume"]){
-        self.paused = false;
-        [menu removeFromParent];
-        btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
-        [self addChild:btn_pause];
+        if([touched.name isEqualToString:@"pause"]){
+            self.paused = true;
+            [btn_pause removeFromParent];
+            menu = [pause createPauseMenu:CGPointMake(self.size.width/2, self.size.height/2)];
+            [self addChild:menu];
         
-    } else if([touched.name isEqualToString:@"Tutorial"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        Tutorial *vc = [storyboard instantiateViewControllerWithIdentifier:@"Tutorial"];
-        [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
-    } else if([touched.name isEqualToString:@"Quit"]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"quitGame" object:self];
-    } else if ([touched.name isEqualToString:@"Start"]){
-        [self SpawnHooks];
-        [self SpawnWorms];
-        [startBtn removeFromParent];
-        fish.physicsBody.dynamic = YES;
+        } else if([touched.name isEqualToString:@"Resume"]){
+            self.paused = false;
+            [menu removeFromParent];
+            btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
+            [self addChild:btn_pause];
+        
+        } else if([touched.name isEqualToString:@"Tutorial"]){
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            Tutorial *vc = [storyboard instantiateViewControllerWithIdentifier:@"Tutorial"];
+            [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
+            
+        } else if([touched.name isEqualToString:@"Quit"]){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"quitGame" object:self];
+            
+        } else if ([touched.name isEqualToString:@"Start"]){
+            [musicPlayer play];
+            [self SpawnHooks];
+            [self SpawnWorms];
+            [startBtn removeFromParent];
+            fish.physicsBody.dynamic = YES;
+        }
+    } else if(gameOver) {
+        //Game over leave scene
+         GameOver *scene = [[GameOver alloc]initWithSize:self.size score:score];
+         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+         [self.view presentScene:scene transition:trans];
+        gameOver = false;
     }
 }
 -(void)didBeginContact:(SKPhysicsContact *)contact {
@@ -367,15 +523,18 @@ static const uint32_t cat_world = 0x1 << 3;
     }
     
     if(theContact.categoryBitMask == cat_hook){
+        gameOver = true;
         [self GameOver];
         
     } else if (theContact.categoryBitMask == cat_worm) {
+        [self runAction:eating];
         [fish removeFromParent];
         level = level + 1;
         [self CreateFish:theContact.node.position];
         update = [(Worm *)theContact.node collision:fish];
-        score = score + 50;
         [self changeProgress:level];
+        score = score + 50;
+        scoreLbl.text = [@(score)stringValue];
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "GameOver.h"
 #import "Menu.h"
+#import "GameScene.h"
 #import <Parse/Parse.h>
 
 @implementation GameOver
@@ -32,7 +33,7 @@
 
 #pragma mark - Setup Scene
 // Setup Scene
-- (instancetype)initWithSize:(CGSize)size {
+- (id)initWithSize:(CGSize)size score:(int)scoreNum {
     
     if (self = [super initWithSize:size]) {
         
@@ -97,6 +98,20 @@
         btnBack.zPosition = 0;
         btnBack.name = bLabel.text;
         
+        //Back button w/Label added
+        SKSpriteNode *replay = [SKSpriteNode spriteNodeWithImageNamed:@"btn_back"];
+        SKLabelNode *rLabel = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
+        rLabel.text = @"Replay";
+        rLabel.name = rLabel.text;
+        rLabel.fontColor = [SKColor whiteColor];
+        rLabel.fontSize = 16;
+        rLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        rLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
+        [replay addChild:rLabel];
+        [replay setPosition:CGPointMake(self.size.width - 210, self.size.height - 220)];
+        replay.zPosition = 0;
+        replay.name = rLabel.text;
+        
         PFUser *current = [PFUser currentUser];
         PFQuery *query = [PFQuery queryWithClassName:@"Score"];
         //Find player
@@ -110,7 +125,7 @@
             //Get info
             PFQuery *info = [PFQuery queryWithClassName:@"Score"];
             [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                score = [[object objectForKey:@"score"] intValue];
+                score = scoreNum;
                 coins = [[object objectForKey:@"Coins"] intValue];
                 newCoins = score/10;
                 highScore = [[object objectForKey:@"HighScore"] intValue];
@@ -195,7 +210,6 @@
                 [self addChild:lbl_score];
                 [self addChild:lbl_high];
                 [self addChild:lbl_coins];
-                
             }];
         }];
 
@@ -206,6 +220,7 @@
         [self addChild:title_coins];
         [self addChild:btnBack];
         [self addChild:title_high];
+        [self addChild:replay];
     }
     
     return self;
@@ -221,9 +236,13 @@
     
     //Submit button
     if ([touched.name isEqualToString:@"Menu"]){
-        
         [btn_share removeFromSuperview];
         Menu *scene = [Menu sceneWithSize:self.size];
+        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+        [self.view presentScene:scene transition:trans];
+    } else if ([touched.name isEqualToString:@"Replay"]){
+        [btn_share removeFromSuperview];
+        GameScene *scene = [GameScene sceneWithSize:self.size];
         SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
         [self.view presentScene:scene transition:trans];
     }

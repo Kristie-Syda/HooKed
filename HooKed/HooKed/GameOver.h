@@ -23,4 +23,6 @@
     FBSDKShareButton *btn_share;
 }
 
+- (id)initWithSize:(CGSize)size score:(int)scoreNum;
+
 @end

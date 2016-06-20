@@ -30,7 +30,9 @@
     PFUser *currentUser = [PFUser currentUser];
     if(currentUser){
         Menu *scene = [[Menu alloc] initWithSize:skView.bounds.size];
-        scene.scaleMode = SKSceneScaleModeAspectFit;
+    NSLog(@"width = %f",skView.bounds.size.width);
+    NSLog(@"height = %f",skView.bounds.size.height);
+        scene.scaleMode = SKSceneScaleModeResizeFill;
         scene.anchorPoint = CGPointMake(0, 0);
         /* Notifications */
         
@@ -38,7 +40,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
         // Present the scene.
         [skView presentScene:scene];
-        
         
     } else {
         // Create and configure the Register/Login scene.
@@ -49,9 +50,42 @@
         // Present the scene.
         [skView presentScene:scene];
     }
-    
-   
 }
+
+//-(void)viewWillLayoutSubviews{
+//    // Configure the view.
+//    skView = (SKView *)self.view;
+//    skView.showsFPS = YES;
+//    skView.showsNodeCount = YES;
+//    /* Sprite Kit applies additional optimizations to improve rendering performance */
+//    skView.ignoresSiblingOrder = NO;
+//    skView.showsPhysics = YES;
+//    
+//    PFUser *currentUser = [PFUser currentUser];
+//    if(currentUser){
+//        NSLog(@"width = %f",skView.bounds.size.width);
+//        NSLog(@"height = %f",skView.bounds.size.height);
+//        Menu *scene = [[Menu alloc] initWithSize:skView.bounds.size];
+//        scene.scaleMode = SKSceneScaleModeAspectFit;
+//        scene.anchorPoint = CGPointMake(0, 0);
+//        /* Notifications */
+//        
+//        //Player wants to quit game
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitGame:) name:@"quitGame" object:nil];
+//        // Present the scene.
+//        [skView presentScene:scene];
+//        
+//    } else {
+//        // Create and configure the Register/Login scene.
+//        Register *scene = [[Register alloc] initWithSize:skView.bounds.size];
+//        scene.scaleMode = SKSceneScaleModeAspectFit;
+//        scene.anchorPoint = CGPointMake(0, 0);
+//        
+//        // Present the scene.
+//        [skView presentScene:scene];
+//    }
+//
+//}
 
 -(void)viewDidAppear:(BOOL)animated{
      /* Notifications */

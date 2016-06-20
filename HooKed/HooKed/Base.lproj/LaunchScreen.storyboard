@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,12 +17,28 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="4nH-im-dBG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="607"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4nH-im-dBG" secondAttribute="trailing" id="9bL-Ko-Han"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4nH-im-dBG" secondAttribute="bottom" constant="-7" id="GiU-4D-gLQ"/>
+                            <constraint firstItem="4nH-im-dBG" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="SYh-dC-OyW"/>
+                            <constraint firstItem="4nH-im-dBG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="xCI-yv-lrD"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="232" y="362"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="1342" height="754"/>
+    </resources>
 </document>

@@ -18,7 +18,7 @@
 }
 
 //Set up tableview cells for leaderboard
--(void)setUpCell:(int)rankNumber name:(NSString*)username score:(NSNumber *)scoreNumber {
+-(void)setUpCell:(int)rankNumber name:(NSString*)username score:(NSNumber *)scoreNumber{
     rank.text = [NSString stringWithFormat:@"%d",rankNumber];
     userName.text = username;
     score.text = [scoreNumber stringValue];

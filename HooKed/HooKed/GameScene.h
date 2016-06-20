@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "Worm.h"
 #import "PauseMenu.h"
 #import "ScoreBox.h"
@@ -30,5 +31,9 @@
     int score;
     NSString *playerId;
     SKSpriteNode *startBtn;
+    SKAction *eating;
+    SKAction *over;
+    BOOL gameOver;
+    AVAudioPlayer *musicPlayer;
 }
 @end

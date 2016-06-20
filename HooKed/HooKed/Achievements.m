@@ -27,12 +27,14 @@
         NSNumber *one;
         NSNumber *two;
         NSNumber *three;
+        NSNumber *four;
         
         //Loop through parse objects
         for(PFObject *info in objects){
             one = info[@"A1"];
             two = info[@"A2"];
             three = info[@"A3"];
+            four = info[@"A4"];
         }
     
         AchData *achievement1 = [[AchData alloc]init];
@@ -50,21 +52,32 @@
         achievement3.Details = @"Earn 5,000 points";
         achievement3.Image = three;
         
+        AchData *achievement4 = [[AchData alloc]init];
+        achievement4.Title = @"Full Closet";
+        achievement4.Details = @"Own every outfit in the shop";
+        achievement4.Image = four;
+        
         [achArray addObject:achievement1];
         [achArray addObject:achievement2];
         [achArray addObject:achievement3];
+        [achArray addObject:achievement4];
         [myTable reloadData];
     }];
     
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //Initalize array
     achArray = [[NSMutableArray alloc]init];
     [self getAchievements];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
+    } else {
+        //Background
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

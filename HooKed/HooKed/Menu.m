@@ -62,8 +62,27 @@
         titleLabel.fontColor = [SKColor blackColor];
         titleLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         titleLabel.fontSize = 40;
-        titleLabel.position = CGPointMake(self.size.width/2 + 10, self.size.height - 100);
         titleLabel.zPosition = 0;
+        
+        
+        //LogOut
+        SKSpriteNode *logOut = [SKSpriteNode spriteNodeWithImageNamed:@"btn_LogOut"];
+        logOut.name = @"LogOut";
+        
+        //View Profile
+        SKSpriteNode *viewProfile = [SKSpriteNode spriteNodeWithImageNamed:@"btn_viewProf"];
+        viewProfile.name = @"Profile";
+        
+        if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
+            titleLabel.position = CGPointMake(768/2 + 10, 1024 - 200);
+            logOut.position = CGPointMake(768/4 - 20, 1024 - 200);
+            viewProfile.position = CGPointMake(768/4 - 20, 1024 - 240);
+        
+        } else {
+            titleLabel.position = CGPointMake(self.size.width/2 + 10, self.size.height - 100);
+            logOut.position = CGPointMake(self.size.width/4 - 20,self.size.height - 80);
+            viewProfile.position = CGPointMake(self.size.width/4 - 20, self.size.height - 120);
+        }
         
         //Play Game Button
         SKSpriteNode *play = [self makeBtn:@"Play Game" position:CGPointMake(titleLabel.position.x, titleLabel.position.y - 50)];
@@ -77,15 +96,7 @@
         //Leaderboard
         SKSpriteNode *lead = [self makeBtn:@"Leaderboard" position:CGPointMake(ach.position.x, ach.position.y - 50)];
         
-        //LogOut
-        SKSpriteNode *logOut = [SKSpriteNode spriteNodeWithImageNamed:@"btn_LogOut"];
-        logOut.name = @"LogOut";
-        logOut.position = CGPointMake(self.size.width/4 - 20,self.size.height - 80);
-        
-        //View Profile
-        SKSpriteNode *viewProfile = [SKSpriteNode spriteNodeWithImageNamed:@"btn_viewProf"];
-        viewProfile.name = @"Profile";
-        viewProfile.position = CGPointMake(self.size.width/4 - 20, self.size.height - 120);
+
         
         [self addChild:titleLabel];
         [self addChild:play];

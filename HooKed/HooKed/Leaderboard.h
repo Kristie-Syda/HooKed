@@ -22,6 +22,5 @@
     PFUser *current;
     IBOutlet UILabel *type;
     int i;
-    
 }
 @end

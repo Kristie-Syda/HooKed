@@ -14,6 +14,9 @@
 		C4410D801D0E26C90046C477 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = C4410D7F1D0E26C90046C477 /* Tutorial.m */; };
 		C4410D831D0E29480046C477 /* TutData.m in Sources */ = {isa = PBXBuildFile; fileRef = C4410D821D0E29480046C477 /* TutData.m */; };
 		C4410D871D0E96580046C477 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4410D861D0E96580046C477 /* ParseFacebookUtilsV4.framework */; };
+		C441C7A71D172285007E137C /* Pelican.caf in Resources */ = {isa = PBXBuildFile; fileRef = C441C7A61D172285007E137C /* Pelican.caf */; };
+		C441C7A91D1728C0007E137C /* over.caf in Resources */ = {isa = PBXBuildFile; fileRef = C441C7A81D1728C0007E137C /* over.caf */; };
+		C441C7AB1D173047007E137C /* eating.caf in Resources */ = {isa = PBXBuildFile; fileRef = C441C7AA1D173047007E137C /* eating.caf */; };
 		C442984F1D0A75AA0097AF72 /* TableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C442984E1D0A75AA0097AF72 /* TableCell.m */; };
 		C44298551D0AD00C0097AF72 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298541D0AD00C0097AF72 /* Shop.m */; };
 		C44298581D0AD4270097AF72 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44298571D0AD4270097AF72 /* ShopCell.m */; };
@@ -86,6 +89,9 @@
 		C4410D811D0E29480046C477 /* TutData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutData.h; sourceTree = "<group>"; };
 		C4410D821D0E29480046C477 /* TutData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutData.m; sourceTree = "<group>"; };
 		C4410D861D0E96580046C477 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		C441C7A61D172285007E137C /* Pelican.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pelican.caf; sourceTree = "<group>"; };
+		C441C7A81D1728C0007E137C /* over.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = over.caf; sourceTree = "<group>"; };
+		C441C7AA1D173047007E137C /* eating.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = eating.caf; sourceTree = "<group>"; };
 		C442984D1D0A75AA0097AF72 /* TableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCell.h; sourceTree = "<group>"; };
 		C442984E1D0A75AA0097AF72 /* TableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCell.m; sourceTree = "<group>"; };
 		C44298531D0AD00C0097AF72 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
@@ -230,6 +236,9 @@
 		C48013641CF44B1500143162 /* HooKed */ = {
 			isa = PBXGroup;
 			children = (
+				C441C7A61D172285007E137C /* Pelican.caf */,
+				C441C7A81D1728C0007E137C /* over.caf */,
+				C441C7AA1D173047007E137C /* eating.caf */,
 				C48013681CF44B1500143162 /* AppDelegate.h */,
 				C48013691CF44B1500143162 /* AppDelegate.m */,
 				C480136B1CF44B1500143162 /* GameScene.h */,
@@ -415,8 +424,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C441C7A91D1728C0007E137C /* over.caf in Resources */,
 				C480136F1CF44B1500143162 /* GameScene.sks in Resources */,
+				C441C7A71D172285007E137C /* Pelican.caf in Resources */,
 				C480137A1CF44B1500143162 /* LaunchScreen.storyboard in Resources */,
+				C441C7AB1D173047007E137C /* eating.caf in Resources */,
 				C48013771CF44B1500143162 /* Assets.xcassets in Resources */,
 				C48013751CF44B1500143162 /* Main.storyboard in Resources */,
 			);

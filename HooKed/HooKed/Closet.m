@@ -16,6 +16,25 @@
 
 @implementation Closet
 
+-(void)checkClosetAchievement{
+    if(items.count == 8){
+        PFQuery *info = [PFQuery queryWithClassName:@"Achievements"];
+        [info whereKey:@"Player" equalTo:[PFUser currentUser]];
+    
+        [info findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            NSString *achieveId;
+            //Loop through player array
+            for(PFObject *player in objects){
+                achieveId = [player objectId];
+            }
+        
+            [info getObjectInBackgroundWithId:achieveId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                object[@"A4"] = [NSNumber numberWithBool:1];
+                [object saveInBackground];
+            }];
+        }];
+    }
+}
 -(void)outfitChanged {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
                                                                    message:@"Outfit changed"
@@ -41,6 +60,12 @@
 -(void)grabData {
     items = [[NSMutableArray alloc]init];
     
+    ShopData *none = [[ShopData alloc]init];
+    none.shopName = @"None";
+    none.imageName = @"blank";
+    [items addObject:none];
+
+    
     PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     //Find player
@@ -60,21 +85,31 @@
                 NSString *str = [img substringWithRange:NSMakeRange(4, [img length]-4)];
                 
                 ShopData *data = [[ShopData alloc]init];
-                data.shopName = img;
-                data.imageName = str;
+                data.shopName = str;
+                data.imageName = img;
                 [items addObject:data];
             }
+            
+            [self checkClosetAchievement];
+
             [myCollection reloadData];
         }];
     }];
 }
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
+    } else {
+        //Background
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    }
+
+    //Grab parse data
     [self grabData];
-    //Background
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -87,7 +122,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
     ShopData *data = [items objectAtIndex:indexPath.row];
-    [cell SetupCloset:data.imageName name:data.shopName];
+    [cell SetupCloset:data.shopName name:data.shopName];
 
     return cell;
 }
@@ -97,7 +132,7 @@
     UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
     if(cell != nil){
         ShopData *data = [items objectAtIndex:indexPath.row];
-        [self chooseItem:data.shopName];
+        [self chooseItem:data.imageName];
     }
 }
 

@@ -11,13 +11,13 @@
 #import "ShopData.h"
 #import "ShopCell.h"
 #import "profile.h"
+#import <SpriteKit/SpriteKit.h>
 
 @interface Shop ()
 
 @end
 
 @implementation Shop
-
 
 -(void)GrabCoins {
     //Pull data from parse
@@ -56,9 +56,51 @@
     redShirt.name = @"Red Shirt";
     redShirt.shopName = @"img_redShirt";
     
+    ShopData *yellowShirt = [[ShopData alloc]init];
+    yellowShirt.price = 100;
+    yellowShirt.imageName = @"yellowShirt";
+    yellowShirt.name = @"Yellow Shirt";
+    yellowShirt.shopName = @"img_yellowShirt";
+    
+    ShopData *beenieHat = [[ShopData alloc]init];
+    beenieHat.price = 50;
+    beenieHat.imageName = @"beenieHat";
+    beenieHat.name = @"Beenie Hat";
+    beenieHat.shopName = @"img_beenieHat";
+    
+    ShopData *drinkHat = [[ShopData alloc]init];
+    drinkHat.price = 500;
+    drinkHat.imageName = @"drinkHat";
+    drinkHat.name = @"Drink Hat";
+    drinkHat.shopName = @"img_drinkHat";
+    
+    ShopData *vikingHat = [[ShopData alloc]init];
+    vikingHat.price = 300;
+    vikingHat.imageName = @"vikingHat";
+    vikingHat.name = @"Viking Hat";
+    vikingHat.shopName = @"img_vikingHat";
+    
+    ShopData *santaHat = [[ShopData alloc] init];
+    santaHat.price = 200;
+    santaHat.imageName = @"santaHat";
+    santaHat.name = @"Santa Hat";
+    santaHat.shopName = @"img_santaHat";
+    
+    ShopData *spinHat = [[ShopData alloc] init];
+    spinHat.price = 400;
+    spinHat.imageName = @"spinHat";
+    spinHat.name = @"Spin Hat";
+    spinHat.shopName = @"img_spinHat";
+
     //add to array
     [items addObject:blueShirt];
     [items addObject:redShirt];
+    [items addObject:yellowShirt];
+    [items addObject:beenieHat];
+    [items addObject:drinkHat];
+    [items addObject:vikingHat];
+    [items addObject:santaHat];
+    [items addObject:spinHat];
 }
 -(void)cantBuyItem:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
@@ -73,7 +115,6 @@
     
     [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
-
 }
 -(void)buyItem:(ShopData *)data {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
@@ -135,6 +176,7 @@
                     [object addUniqueObject:sData.shopName forKey:@"Closet"];
                     object[@"ItemName"] = sData.shopName;
                     [self GrabCoins];
+                    [self cantBuyItem:@"Item bought"];
                     [object saveInBackground];
                 } else {
                       //informs player they do not have enough coins
@@ -155,9 +197,12 @@
     [self GrabCoins];
     //Grab data to make collectionview
     [self GrabData];
-    //Background
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
     
+    if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
+    } else {
+        //Background
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -187,15 +232,5 @@
 -(IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -20,12 +20,11 @@
 #pragma mark - Data Methods
 //Load Global Scores
 -(void)loadGlobal {
-    type.text = @"Global";
+    type.text = @"Global Leaderboard";
     [playerArray removeAllObjects];
     current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     [query orderByDescending:@"HighScore"];
-    [query whereKey:@"HighScore" greaterThan:@0];
     [query findObjectsInBackgroundWithBlock:^(NSArray *all, NSError *error) {
         i = 0;
         //loop through data and create custom object
@@ -33,7 +32,7 @@
 
             Data *data = [[Data alloc]init];
             data.name = player[@"UserName"];
-            data.score = player[@"score"];
+            data.score = player[@"HighScore"];
             data.playerId = current.objectId;
             data.location = player[@"Location"];
             data.rank = ++i;
@@ -47,11 +46,10 @@
 }
 //Load Local Scores
 -(void)loadLocal {
-    type.text = @"Local";
+    type.text = @"Local Leaderboard";
     [playerArray removeAllObjects];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     [query orderByDescending:@"HighScore"];
-    [query whereKey:@"HighScore" greaterThan:@0];
    
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         
@@ -66,7 +64,7 @@
                 
                 Data *data = [[Data alloc]init];
                 data.name = player[@"UserName"];
-                data.score = player[@"score"];
+                data.score = player[@"HighScore"];
                 data.playerId = current.objectId;
                 data.location = player[@"Location"];
                 data.rank = ++i;
@@ -138,7 +136,7 @@
                                 for (PFObject *player in objects) {
                                     Data *data = [[Data alloc]init];
                                     data.name = player[@"UserName"];
-                                    data.score = player[@"score"];
+                                    data.score = player[@"HighScore"];
                                     data.rank = ++i;
                                     //Add to main array
                                     [playerArray addObject:data];
@@ -157,10 +155,16 @@
 #pragma mark - SetUp View
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //initialize array
     playerArray = [[NSMutableArray alloc]init];
     [self loadGlobal];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    
+    if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
+    
+    }else {
+         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_menu"]]];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

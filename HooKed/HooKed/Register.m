@@ -37,6 +37,7 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor whiteColor];
     password.textColor = [UIColor blackColor];
+    password.secureTextEntry = true;
     
     [self.view addSubview:name];
     [self.view addSubview:password];
@@ -46,6 +47,22 @@
 -(void)removeFields {
     [name removeFromSuperview];
     [password removeFromSuperview];
+}
+
+//alert method
+-(void)sendAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"OKAY"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:cancel];
+    [self.view.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 // Setup Scene
@@ -108,26 +125,32 @@
     
     //Login
     if ([touched.name isEqualToString:@"Login"]){
-        [PFUser logInWithUsernameInBackground:name.text password:password.text block:^(PFUser *user, NSError *error) {
-            if(user) {
-                //set user
-                [PFUser becomeInBackground:[user sessionToken] block:^(PFUser *currentUser, NSError *error) {
-                    if(error){
-                        
-                        NSLog(@"Error with login");
-                        
-                    } else {
-                        //login successful - Open menu
-                        [self removeFields];
-                        Menu *scene = [Menu sceneWithSize:self.size];
-                        SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
-                        [self.view presentScene:scene transition:trans];
-                    }
-                }];
-            } else {
-                NSLog(@"Wrong username or Password");
-            }
-        }];
+        
+        //check for blanks
+        if([name.text isEqualToString:@""]){
+            [self sendAlert:@"Username missing"];
+        } else if([password.text isEqualToString:@""]){
+            [self sendAlert:@"Password missing"];
+        } else {
+            [PFUser logInWithUsernameInBackground:name.text password:password.text block:^(PFUser *user, NSError *error) {
+                if(user) {
+                    //set user
+                    [PFUser becomeInBackground:[user sessionToken] block:^(PFUser *currentUser, NSError *error) {
+                        if(error){
+                        } else {
+                            //login successful - Open menu
+                            [self removeFields];
+                            Menu *scene = [Menu sceneWithSize:self.size];
+                            SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+                            [self.view presentScene:scene transition:trans];
+                        }
+                    }];
+                } else {
+                    [self sendAlert:@"Incorrect username/password"];
+                }
+            }];
+
+        }
         
     //Forgot Password
     } else if ([touched.name isEqualToString:@"forgot"]){

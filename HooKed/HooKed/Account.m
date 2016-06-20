@@ -63,12 +63,28 @@
     password.borderStyle = UITextBorderStyleRoundedRect;
     password.backgroundColor = [UIColor whiteColor];
     password.textColor = [UIColor blackColor];
+    password.secureTextEntry = true;
     
     [self.view addSubview:first];
     [self.view addSubview:last];
     [self.view addSubview:userName];
     [self.view addSubview:password];
     [self.view addSubview:email];
+}
+
+-(void)sendAlert:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"OKAY"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:cancel];
+    [self.view.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 // Have to remove textfields off screen manually
@@ -90,48 +106,64 @@
     User.password = password.text;
     User.email = email.text;
     
-    [User signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(!error){
-          //Creating User
-            PFObject *userData = [PFObject objectWithClassName:@"Score"];
-            [userData setObject:[PFUser currentUser] forKey:@"Player"];
-            PFUser *user = [PFUser currentUser];
-            
-             [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
-                 //fake location -- debugging purposes
-                 //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
-                 PFGeoPoint *real = point;
-                 
-                 //Set up score properties
-                 PFObject *info = [PFObject objectWithClassName:@"Score"];
-                 info[@"score"] = [NSNumber numberWithInt:0];
-                 info[@"Location"] = real;
-                 info[@"UserName"] = [user username];
-                 info[@"Player"] = user;
-                 info[@"HighScore"] = [NSNumber numberWithInt:0];
-                 info[@"Coins"] = [NSNumber numberWithInt:0];
-                 info[@"ItemName"] = @"NONE";
-                 [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                 }];
-                 
-                 //Set up achievement properties
-                 PFObject *data = [PFObject objectWithClassName:@"Achievements"];
-                 data[@"Player"] = user;
-                 data[@"A1"] = [NSNumber numberWithBool:0];
-                 data[@"A2"] = [NSNumber numberWithBool:0];
-                 data[@"A3"] = [NSNumber numberWithBool:0];
-                 [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                 }];
-                 //OPEN Menu Scene
-                 [self removeFields];
-                 Menu *scene = [Menu sceneWithSize:self.size];
-                 SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
-                 [self.view presentScene:scene transition:trans];
-             }];
-        } else {
-            NSLog(@"Something went wrong while creating user");
-        }
-    }];
+    //check for blanks
+    if([email.text isEqualToString:@""]){
+        [self sendAlert:@"missing email"];
+    }
+    else if([first.text isEqualToString:@""]){
+        [self sendAlert:@"missing first name"];
+    }
+    else if([last.text isEqualToString:@""]){
+        [self sendAlert:@"missing last name"];
+    }
+    else {
+        [User signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(!error){
+                //Creating User
+                PFObject *userData = [PFObject objectWithClassName:@"Score"];
+                [userData setObject:[PFUser currentUser] forKey:@"Player"];
+                PFUser *user = [PFUser currentUser];
+                
+                [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
+                    //fake location -- debugging purposes
+                    //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
+                    PFGeoPoint *real = point;
+                    
+                    //Set up score properties
+                    PFObject *info = [PFObject objectWithClassName:@"Score"];
+                    info[@"score"] = [NSNumber numberWithInt:0];
+                    info[@"Location"] = real;
+                    info[@"UserName"] = [user username];
+                    info[@"Player"] = user;
+                    info[@"HighScore"] = [NSNumber numberWithInt:0];
+                    info[@"Coins"] = [NSNumber numberWithInt:0];
+                    info[@"ItemName"] = @"NONE";
+                    [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
+                    
+                    //Set up achievement properties
+                    PFObject *data = [PFObject objectWithClassName:@"Achievements"];
+                    data[@"Player"] = user;
+                    data[@"A1"] = [NSNumber numberWithBool:0];
+                    data[@"A2"] = [NSNumber numberWithBool:0];
+                    data[@"A3"] = [NSNumber numberWithBool:0];
+                    data[@"A4"] = [NSNumber numberWithBool:0];
+                    data[@"A5"] = [NSNumber numberWithBool:0];
+                    [data saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    }];
+                    [self sendAlert:@"Account Created"];
+                    //OPEN Menu Scene
+                    [self removeFields];
+                    Menu *scene = [Menu sceneWithSize:self.size];
+                    SKTransition *trans = [SKTransition doorsOpenVerticalWithDuration:2];
+                    [self.view presentScene:scene transition:trans];
+                }];
+            } else {
+                [self sendAlert:error.localizedDescription];
+                NSLog(@"Something went wrong while creating user");
+            }
+        }];
+    }
 }
 
 // Setup Scene

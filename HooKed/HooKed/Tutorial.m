@@ -27,13 +27,28 @@
     pg2.pic = @"tut_hook";
     
     TutData *pg3 = [[TutData alloc]init];
-    pg3.info = @"Eat the Worms to grow bigger.";
+    pg3.info = @"Eat the Worms to grow bigger & faster.";
     pg3.pic = @"worm_001";
+    
+    TutData *pg4 = [[TutData alloc]init];
+    pg4.info = @"Eat the worms to also change into a different kind of fish. Watch the bar at the top left.";
+    pg4.pic = @"tut_fishBar";
+    
+    TutData *pg5 = [[TutData alloc]init];
+    pg5.info = @"The further you go, the higher the score you get. You will also recieve coins for the score you earn each round";
+    pg5.pic = @"tut_score";
+    
+    TutData *pg6 = [[TutData alloc]init];
+    pg6.info = @"Use your coins to buy items in the shop";
+    pg6.pic = @"tut_shop";
 
     
     [pages addObject:pg1];
     [pages addObject:pg2];
     [pages addObject:pg3];
+    [pages addObject:pg4];
+    [pages addObject:pg5];
+    [pages addObject:pg6];
 }
 
 - (void)viewDidLoad {
@@ -58,7 +73,7 @@
 
 -(IBAction)next:(id)sender {
     object ++;
-    if(object > 2){
+    if(object > 5){
         object = 0;
     }
     TutData *data = [pages objectAtIndex:object];

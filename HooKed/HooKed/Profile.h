@@ -13,6 +13,10 @@
 {
     NSString *userName;
     NSString *playerId;
+    SKLabelNode *title_user;
+    SKLabelNode *title_score;
+    SKLabelNode *title_coins;
+    SKLabelNode *lbl_coins;
     int score;
     int coins;
 
