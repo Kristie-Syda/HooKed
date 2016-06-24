@@ -67,7 +67,6 @@ public class LeaderboardFragment extends Fragment {
             //Loop through objects
             for(ParseObject object : objects){
                 String user = object.getString("UserName");
-                System.out.print("////////////////// user = " + user);
                 int score = object.getInt("HighScore");
                 mRank = mRank + 1;
                 leadObject = new LeaderObject(user,score,mRank);
@@ -76,7 +75,6 @@ public class LeaderboardFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println("////////////////// leadList = " + (leadList));
         ListView list = (ListView) getView().findViewById(R.id.listView2);
         list.setAdapter(new LeaderAdapter(leadList));
     }
