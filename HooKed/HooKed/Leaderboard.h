@@ -22,5 +22,6 @@
     PFUser *current;
     IBOutlet UILabel *type;
     int i;
+    NSString *playerId;
 }
 @end

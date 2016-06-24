@@ -24,6 +24,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -33,7 +34,7 @@ import java.util.List;
 public class ShopFragment extends Fragment {
     public static final String TAG = "ShopFragment.TAG";
     private String mCoins;
-    private ArrayList mCloset;
+    private ArrayList mCloset = new ArrayList();
     private String objectId;
     private TextView coinLbl;
 
@@ -86,6 +87,7 @@ public class ShopFragment extends Fragment {
                 //Get info from object
                 mCoins = String.valueOf(object.getInt("Coins"));
                 mCloset = (ArrayList) object.get("Closet");
+                System.out.println(mCloset);
                 objectId = object.getObjectId();
                 //Fill in label
                 coinLbl.setText(mCoins);
@@ -107,6 +109,7 @@ public class ShopFragment extends Fragment {
             Alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
                     //User already owns item
                     if(mCloset.contains(img)){
                         AlertDialog.Builder alert2 = new AlertDialog.Builder(getActivity());

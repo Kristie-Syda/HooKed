@@ -138,6 +138,7 @@
                     info[@"HighScore"] = [NSNumber numberWithInt:0];
                     info[@"Coins"] = [NSNumber numberWithInt:0];
                     info[@"ItemName"] = @"NONE";
+                    info[@"Closet"] = @"img_blank";
                     [info saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     }];
                     

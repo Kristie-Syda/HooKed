@@ -46,6 +46,36 @@
 }
 //Load Local Scores
 -(void)loadLocal {
+    //check to see if user has a location
+    PFQuery *query2 = [PFQuery queryWithClassName:@"Score"];
+    //Find player
+    [query2 whereKey:@"Player" equalTo:current];
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        //Loop through player array
+        for(PFObject *player in objects){
+            playerId = [player objectId];
+        }
+        //Get info
+        PFQuery *info = [PFQuery queryWithClassName:@"Score"];
+        [info getObjectInBackgroundWithId:playerId block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+             PFGeoPoint *hasLocation = object[@"Location"];
+            if(hasLocation == nil){
+                //Then get location
+                [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *point, NSError *err){
+                    //fake location -- debugging purposes
+                    //PFGeoPoint *fake = [PFGeoPoint geoPointWithLatitude:-77 longitude:77];
+                    PFGeoPoint *real = point;
+                    object[@"Location"] = real;
+                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        
+                    }];
+                }];
+            } else {
+                //User has location
+            }
+        }];
+    }];
+    
     type.text = @"Local Leaderboard";
     [playerArray removeAllObjects];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];

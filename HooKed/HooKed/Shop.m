@@ -166,7 +166,7 @@
             //Can buy if player dont already own it
             if(dontHave == false) {
                 //Can buy if player has enough coins
-                if(coins > sData.price) {
+                if(coins >= sData.price) {
                     //deduct price from total coins
                     int newCoins = coins - sData.price;
                     

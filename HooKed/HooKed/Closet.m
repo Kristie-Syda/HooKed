@@ -60,12 +60,6 @@
 -(void)grabData {
     items = [[NSMutableArray alloc]init];
     
-    ShopData *none = [[ShopData alloc]init];
-    none.shopName = @"None";
-    none.imageName = @"blank";
-    [items addObject:none];
-
-    
     PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Score"];
     //Find player

@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.example.kristie_syda.hooked.Activities.MainActivity;
 import com.example.kristie_syda.hooked.R;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 /**
@@ -69,10 +71,39 @@ public class RegisterFragment extends Fragment {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                //No error
-                                Intent intent = new Intent(getActivity(), MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
+
+                                //Set up Score class in parse
+                                ParseUser user = ParseUser.getCurrentUser();
+                                ParseObject gameScore = new ParseObject("Score");
+                                gameScore.put("score", 0);
+                                gameScore.put("HighScore", 0);
+                                gameScore.put("Player", user);
+                                gameScore.put("Coins", 0);
+                                gameScore.put("ItemName", "NONE");
+                                gameScore.put("UserName",user.getUsername());
+                                gameScore.addUnique("Closet","img_blank");
+                                gameScore.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        //Set up achievements
+                                        ParseObject data = new ParseObject("Achievements");
+                                        data.put("Player", ParseUser.getCurrentUser());
+                                        data.put("A1", false);
+                                        data.put("A2", false);
+                                        data.put("A3", false);
+                                        data.put("A4", false);
+                                        data.put("A5", false);
+                                        data.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(ParseException e) {
+                                                //No error
+                                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                                startActivity(intent);
+                                                Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                });
                             } else {
                                 //Error
                                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

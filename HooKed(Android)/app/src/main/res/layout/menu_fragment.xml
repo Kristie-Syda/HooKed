@@ -12,34 +12,27 @@
         android:id="@+id/mTitle"
         android:textColor="#000"
         android:textSize="30dp"
-        android:layout_marginStart="47dp"
         android:layout_alignTop="@+id/btn_logOut"
-        android:layout_alignStart="@+id/btn_play" />
+        android:layout_toEndOf="@+id/btn_logOut"
+        android:layout_marginStart="115dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="Log Out"
         android:id="@+id/btn_logOut"
         android:layout_marginStart="94dp"
-        android:textColor="#fff"
-        android:background="#78482d"
+        android:background="@drawable/logout"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="61dp" />
     <Button
-        android:layout_width="170dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="View Profile"
         android:id="@+id/btn_play"
-        android:textColor="#fff"
-        android:background="#78482d"
-        android:layout_marginStart="55dp"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/btn_logOut"
-        android:layout_below="@id/mTitle"
-        android:layout_marginTop="20dp"/>
+        android:background="@drawable/viewprof"
+        android:layout_below="@+id/mTitle"
+        android:layout_alignStart="@+id/btn_logOut" />
     <Button
         android:layout_width="170dp"
         android:layout_height="30dp"
@@ -48,8 +41,8 @@
         android:textColor="#fff"
         android:background="#78482d"
         android:layout_below="@+id/btn_play"
-        android:layout_alignStart="@+id/btn_play"
-        android:layout_marginTop="20dp" />
+        android:layout_toEndOf="@+id/btn_play"
+        android:layout_marginStart="63dp" />
     <Button
         android:layout_width="170dp"
         android:layout_height="30dp"
@@ -58,8 +51,8 @@
         android:textColor="#fff"
         android:background="#78482d"
         android:layout_below="@+id/btn_shop"
-        android:layout_alignStart="@+id/btn_play"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/btn_shop" />
     <Button
         android:layout_width="170dp"
         android:layout_height="30dp"
@@ -68,7 +61,7 @@
         android:textColor="#fff"
         android:background="#78482d"
         android:layout_below="@+id/btn_ach"
-        android:layout_alignStart="@+id/btn_play"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/btn_ach" />
 
 </RelativeLayout>
