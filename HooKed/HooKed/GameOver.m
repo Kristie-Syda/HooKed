@@ -16,7 +16,7 @@
 #pragma mark - Facebook Button
 // Facebook Sharebutton does not work on SKScene
 -(void)didMoveToView:(SKView *)view{
-    btn_share = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width - 260, self.size.height - 250, 100, 45)];
+    btn_share = [[FBSDKShareButton alloc] initWithFrame:CGRectMake(self.size.width - 260, self.size.height - 210, 100, 35)];
     [btn_share addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn_share];
 }
@@ -57,32 +57,36 @@
         title_user.text = @"Username:";
         title_user.fontColor = [SKColor blackColor];
         title_user.fontSize = 20;
-        title_user.position = CGPointMake(self.size.width/3 - 20, self.size.height - 180);
+        title_user.position = CGPointMake(self.size.width/3, self.size.height - 180);
         title_user.zPosition = 0;
+        title_user.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         
         //Score Title Label
         SKLabelNode *title_score = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
         title_score.text = @" Score:";
         title_score.fontColor = [SKColor blackColor];
         title_score.fontSize = 20;
-        title_score.position = CGPointMake(self.size.width/3 - 20, self.size.height - 230);
+        title_score.position = CGPointMake(self.size.width/3, self.size.height - 230);
         title_score.zPosition = 0;
+        title_score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         
         //Coins Title Label
         SKLabelNode *title_coins = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
         title_coins.text = @" Coins Earned:";
         title_coins.fontColor = [SKColor blackColor];
         title_coins.fontSize = 20;
-        title_coins.position = CGPointMake(self.size.width/3 - 20, self.size.height - 280);
+        title_coins.position = CGPointMake(self.size.width/3, self.size.height - 280);
         title_coins.zPosition = 0;
+        title_coins.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         
         //Highscore Title Label
         SKLabelNode *title_high = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
         title_high.text = @" Highscore:";
         title_high.fontColor = [SKColor blackColor];
         title_high.fontSize = 20;
-        title_high.position = CGPointMake(self.size.width/3 - 20, self.size.height - 320);
+        title_high.position = CGPointMake(self.size.width/3, self.size.height - 320);
         title_high.zPosition = 0;
+        title_high.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
         
         //Back button w/Label added
         SKSpriteNode *btnBack = [SKSpriteNode spriteNodeWithImageNamed:@"btn_back"];
@@ -108,7 +112,7 @@
         rLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         rLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
         [replay addChild:rLabel];
-        [replay setPosition:CGPointMake(self.size.width - 210, self.size.height - 220)];
+        [replay setPosition:CGPointMake(self.size.width - 210, self.size.height - 240)];
         replay.zPosition = 0;
         replay.name = rLabel.text;
         
@@ -179,32 +183,37 @@
                 lbl_user.text = userName;
                 lbl_user.fontColor = [SKColor blackColor];
                 lbl_user.fontSize = 20;
-                lbl_user.position = CGPointMake(self.size.width/3 - 30 + title_user.frame.size.width, self.size.height - 180);
+                lbl_user.position = CGPointMake(self.size.width/3 - 20 + 40, self.size.height - 180);
                 lbl_user.zPosition = 1;
+                lbl_user.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+
                 
                 //Score label
                 SKLabelNode *lbl_score = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
                 lbl_score.text = [@(score) stringValue];
                 lbl_score.fontColor = [SKColor blackColor];
                 lbl_score.fontSize = 20;
-                lbl_score.position = CGPointMake(self.size.width/3 - 20 + title_score.frame.size.width, self.size.height - 230);
+                lbl_score.position = CGPointMake(self.size.width/3 - 20 + 40, self.size.height - 230);
                 lbl_score.zPosition = 1;
+                lbl_score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
                 
                 //highscore label
                 SKLabelNode *lbl_high = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
                 lbl_high.text = [@(highScore) stringValue];
                 lbl_high.fontColor = [SKColor blackColor];
                 lbl_high.fontSize = 20;
-                lbl_high.position = CGPointMake(self.size.width/3 - 20 + 110, self.size.height - 320);
+                lbl_high.position = CGPointMake(self.size.width/3 - 20 + 40, self.size.height - 320);
                 lbl_high.zPosition = 1;
+                lbl_high.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
                 
                 //coins label
                 SKLabelNode *lbl_coins = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE"];
                 lbl_coins.text = [@(newCoins) stringValue];
                 lbl_coins.fontColor = [SKColor blackColor];
                 lbl_coins.fontSize = 20;
-                lbl_coins.position = CGPointMake(self.size.width/3 - 20 + 110, self.size.height - 280);
+                lbl_coins.position = CGPointMake(self.size.width/3 - 20 + 40, self.size.height - 280);
                 lbl_coins.zPosition = 1;
+                lbl_coins.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
 
                 [self addChild:lbl_user];
                 [self addChild:lbl_score];

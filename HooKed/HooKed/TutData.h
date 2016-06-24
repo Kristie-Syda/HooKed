@@ -14,4 +14,5 @@
 
 @property(nonatomic,strong) NSString *info;
 @property(nonatomic,strong) NSString *pic;
+@property(nonatomic,strong) NSString *pgNum;
 @end

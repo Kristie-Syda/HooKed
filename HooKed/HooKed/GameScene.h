@@ -35,5 +35,8 @@
     SKAction *over;
     BOOL gameOver;
     AVAudioPlayer *musicPlayer;
+    BOOL musicOn;
+    BOOL gameStarted;
+    BOOL gamePaused;
 }
 @end

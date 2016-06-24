@@ -16,5 +16,6 @@
     NSString *labelName;
     UIImage *imgName;
     int object;
+    IBOutlet UILabel *progress;
 }
 @end

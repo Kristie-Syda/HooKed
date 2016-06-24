@@ -158,109 +158,112 @@ static const uint32_t cat_world = 0x1 << 3;
 //Hooks
 -(SKSpriteNode *)CreateHooks {
     
-    //hook speed changes with level
-    if (level == 0){
-        time = 5;
-    }else if (level == 1){
-        time = 4.5;
-    }else if (level == 2){
-        time = 4.0;
-    } else if (level == 3){
-        time = 3.5;
-    } else if (level == 4){
-        time = 3.0;
-    } else if (level == 5){
-        time = 2.5;
-    } else if (level == 6){
-        time = 2.0;
-    } else if (level == 7){
-        time = 1.5;
-    } else if (level == 8){
-        time = 1.0;
-    } else if (level == 9){
-        time = 0.8;
-    }else if (level == 10){
-        time = 0.7;
-    }else if (level == 11){
-        time = 0.6;
-    } else if (level == 12){
-        time = 0.5;
-    } else if (level == 13){
-        time = 1.0;
-    } else if (level == 14){
-        time = 0.9;
-    } else if (level == 15){
-        time = 0.8;
-    } else if (level == 16){
-        time = 0.7;
-    } else if (level == 17){
-        time = 0.5;
+    if(gameOver){
+        return nil;
+    } else {
+        //hook speed changes with level
+        if (level == 0){
+            time = 5;
+        }else if (level == 1){
+            time = 4.5;
+        }else if (level == 2){
+            time = 4.0;
+        } else if (level == 3){
+            time = 3.5;
+        } else if (level == 4){
+            time = 3.0;
+        } else if (level == 5){
+            time = 2.5;
+        } else if (level == 6){
+            time = 2.0;
+        } else if (level == 7){
+            time = 1.5;
+        } else if (level == 8){
+            time = 1.0;
+        } else if (level == 9){
+            time = 0.8;
+        }else if (level == 10){
+            time = 0.7;
+        }else if (level == 11){
+            time = 0.6;
+        } else if (level == 12){
+            time = 0.5;
+        } else if (level == 13){
+            time = 1.0;
+        } else if (level == 14){
+            time = 0.9;
+        } else if (level == 15){
+            time = 0.8;
+        } else if (level == 16){
+            time = 0.7;
+        } else if (level == 17){
+            time = 0.5;
+        }
+        
+        
+        //Random number generator with width size
+        int rand = arc4random()%(int)self.size.width;
+        
+        //Hook physics
+        hook = [SKSpriteNode node];
+        SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:@"hook"];
+        node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.size];
+        node.physicsBody.dynamic = NO;
+        node.zPosition = 0;
+        node.position = CGPointMake(rand, 667);
+        node.physicsBody.categoryBitMask = cat_hook;
+        node.physicsBody.contactTestBitMask = cat_fish;
+        node.physicsBody.collisionBitMask = cat_fish;
+        
+        //Hook Movement Up & Down
+        SKAction *hookDown = [SKAction moveToY:self.size.height - 180 duration:time];
+        SKAction *hookUp = [SKAction moveToY:667 duration:time];
+        SKAction *hookMovement = [SKAction sequence:@[hookDown,hookUp,[SKAction removeFromParent]]];
+        [node runAction:hookMovement];
+        [hook addChild:node];
+        [self addChild:hook];
+        return hook;
     }
-
-    
-    //Random number generator with width size
-    int rand = arc4random()%(int)self.size.width;
-    
-    //Hook physics
-    hook = [SKSpriteNode node];
-    SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:@"hook"];
-    node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.size];
-    node.physicsBody.dynamic = NO;
-    node.zPosition = 0;
-    node.position = CGPointMake(rand, 667);
-    node.physicsBody.categoryBitMask = cat_hook;
-    node.physicsBody.contactTestBitMask = cat_fish;
-    node.physicsBody.collisionBitMask = cat_fish;
-    
-    //Hook Movement Up & Down
-    SKAction *hookDown = [SKAction moveToY:self.size.height - 180 duration:time];
-    SKAction *hookUp = [SKAction moveToY:667 duration:time];
-    SKAction *hookMovement = [SKAction sequence:@[hookDown,hookUp,[SKAction removeFromParent]]];
-    [node runAction:hookMovement];
-    [hook addChild:node];
-    [self addChild:hook];
-    return hook;
 }
 -(void)SpawnHooks {
     //Spawning Hooks
     SKAction *spawn = [SKAction performSelector:@selector(CreateHooks) onTarget:self];
     SKAction *wait = [SKAction waitForDuration:5];
     SKAction *spawnSeq = [SKAction sequence:@[spawn, wait]];
-    SKAction *spawning = [SKAction repeatActionForever:spawnSeq];
-    [self runAction:spawning];
+    SKAction *spawningH = [SKAction repeatActionForever:spawnSeq];
+    [self runAction:spawningH];
 }
 
 //Worms
 -(Worm *)CreateWorms{
     
-    //Worm Animation
-    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"worm"];
-    NSArray * textureNames = [[atlas textureNames] sortedArrayUsingSelector: @selector(compare:)];
-    NSMutableArray *wormTextures = [NSMutableArray new];
-    for (NSString *name in textureNames) {
-        [wormTextures addObject: [atlas textureNamed: name]];
+    if(gameOver){
+        return nil;
+    } else {
+        //Worm Animation
+        SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"worm"];
+        NSArray * textureNames = [[atlas textureNames] sortedArrayUsingSelector: @selector(compare:)];
+        NSMutableArray *wormTextures = [NSMutableArray new];
+        for (NSString *name in textureNames) {
+            [wormTextures addObject: [atlas textureNamed: name]];
+        }
+        SKAction *wormMovement = [SKAction animateWithTextures:wormTextures timePerFrame:0.2];
+        //Random number generator with width size
+        int rand = arc4random()%(int)self.size.width;
+        //Worm physics
+        worm = [Worm node];
+        SKSpriteNode *wormNode = [SKSpriteNode spriteNodeWithTexture:wormTextures[0]];
+        [wormNode runAction:[SKAction repeatActionForever:wormMovement]];
+        worm.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:wormNode.size];
+        worm.physicsBody.dynamic = NO;
+        worm.zPosition = 0;
+        worm.position = CGPointMake(rand, self.size.height/2);
+        worm.physicsBody.categoryBitMask = cat_worm;
+        worm.physicsBody.contactTestBitMask = cat_fish;
+        [worm addChild:wormNode];
+        [self addChild:worm];
+        return worm;
     }
-    SKAction *wormMovement = [SKAction animateWithTextures:wormTextures timePerFrame:0.2];
-
-    //Random number generator with width size
-    int rand = arc4random()%(int)self.size.width;
-    
-    //Worm physics
-    worm = [Worm node];
-    SKSpriteNode *wormNode = [SKSpriteNode spriteNodeWithTexture:wormTextures[0]];
-    [wormNode runAction:[SKAction repeatActionForever:wormMovement]];
-    worm.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:wormNode.size];
-    worm.physicsBody.dynamic = NO;
-    worm.zPosition = 0;
-    worm.position = CGPointMake(rand, self.size.height/2);
-    worm.physicsBody.categoryBitMask = cat_worm;
-    worm.physicsBody.contactTestBitMask = cat_fish;
-    
-    
-    [worm addChild:wormNode];
-    [self addChild:worm];
-    
-    return worm;
 }
 -(void)SpawnWorms {
     //Spawning Worms
@@ -283,13 +286,13 @@ static const uint32_t cat_world = 0x1 << 3;
     
     bg1 = [SKSpriteNode spriteNodeWithImageNamed:@"bg2"];
     bg1.size = CGSizeMake(self.size.width, self.size.height);
-    bg1.position = CGPointMake(bg.size.width - 1, self.size.height/2);
+    bg1.position = CGPointMake(bg.size.width, self.size.height/2);
     bg1.zPosition = -1;
     [self addChild:bg1];
     
     bg2 = [SKSpriteNode spriteNodeWithImageNamed:@"bg3"];
     bg2.size = CGSizeMake(self.size.width, self.size.height);
-    bg2.position = CGPointMake(bg1.size.width - 1, self.size.height/2);
+    bg2.position = CGPointMake(bg1.size.width, self.size.height/2);
     bg2.zPosition = -1;
     [self addChild:bg2];
 }
@@ -372,12 +375,31 @@ static const uint32_t cat_world = 0x1 << 3;
     label.fontSize = 40;
     label.fontColor = [SKColor blackColor];
     label.position = CGPointMake(0, 0);
-
+    label.zPosition = 3;
+    fish.physicsBody.dynamic = false;
+    [fish removeFromParent];
+    [hook removeFromParent];
+    [worm removeFromParent];
+    
     SKAction *move = [SKAction moveTo:CGPointMake(self.size.width/2, self.size.height/2) duration:0.4];
     [label runAction:move];
     
     [self addChild:label];
-
+}
+//Music button
+-(void)music {
+    
+    SKSpriteNode *node;
+    if(musicOn){
+        node = [SKSpriteNode spriteNodeWithImageNamed:@"btn_music"];
+    } else {
+        node = [SKSpriteNode spriteNodeWithImageNamed:@"music2"];
+    }
+    
+    node.name = @"music";
+    node.position = CGPointMake((self.size.width - 80), (self.size.height - 30));
+    node.zPosition = 1;
+    [self addChild:node];
 }
 
 #pragma mark - Scene Setup
@@ -390,6 +412,9 @@ static const uint32_t cat_world = 0x1 << 3;
         self.physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(-0.6, 0.0);
         gameOver = false;
+        musicOn = true;
+        gameStarted = false;
+        gamePaused = false;
         level = 0;
         score = 0;
         
@@ -403,7 +428,8 @@ static const uint32_t cat_world = 0x1 << 3;
         pause = [[PauseMenu alloc]init];
         btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width) - 30, (self.size.height - btn_pause.size.height) - 30)];
         [self addChild:btn_pause];
-        
+        [self music];
+     
         //Music/SFX
         NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Pelican" ofType:@"caf"]];
         musicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
@@ -426,15 +452,15 @@ static const uint32_t cat_world = 0x1 << 3;
     
         //Fish gets faster the higher the level
         if ((level == 0)|(level>17)){
-        [fish.physicsBody applyImpulse:CGVectorMake(20, 0)];}
+            [fish.physicsBody applyImpulse:CGVectorMake(20, 0)];}
         else if (level == 1){
-        [fish.physicsBody applyImpulse:CGVectorMake(25, 0)];}
+            [fish.physicsBody applyImpulse:CGVectorMake(25, 0)];}
         else if (level == 2){
-        [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];}
+            [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];}
         else if (level == 3){
-        [fish.physicsBody applyImpulse:CGVectorMake(30, 0)];}
+            [fish.physicsBody applyImpulse:CGVectorMake(30, 0)];}
         else if (level == 4){
-        [fish.physicsBody applyImpulse:CGVectorMake(35, 0)];}
+            [fish.physicsBody applyImpulse:CGVectorMake(35, 0)];}
         else if (level == 5){
             [fish.physicsBody applyImpulse:CGVectorMake(45, 0)];
         }
@@ -477,17 +503,26 @@ static const uint32_t cat_world = 0x1 << 3;
         
         if([touched.name isEqualToString:@"pause"]){
             self.paused = true;
+            gamePaused = true;
             [btn_pause removeFromParent];
             menu = [pause createPauseMenu:CGPointMake(self.size.width/2, self.size.height/2)];
+            if((musicOn)&&(gameStarted)){
+                [musicPlayer pause];
+            }
             [self addChild:menu];
         
         } else if([touched.name isEqualToString:@"Resume"]){
             self.paused = false;
+            gamePaused = false;
             [menu removeFromParent];
-            btn_pause = [pause makePause:CGPointMake((self.size.width - btn_pause.size.width), (self.size.height - btn_pause.size.height))];
+            btn_pause = [pause makePause:CGPointMake(((self.size.width - btn_pause.size.width) + 6), ((self.size.height - btn_pause.size.height) + 6))];
             [self addChild:btn_pause];
+            
+            if((musicOn)&&(gameStarted)){
+                [musicPlayer play];
+            }
         
-        } else if([touched.name isEqualToString:@"Tutorial"]){
+        } else if([touched.name isEqualToString:@"Game Guide"]){
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             Tutorial *vc = [storyboard instantiateViewControllerWithIdentifier:@"Tutorial"];
             [self.view.window.rootViewController presentViewController:vc animated:true completion:nil];
@@ -501,6 +536,19 @@ static const uint32_t cat_world = 0x1 << 3;
             [self SpawnWorms];
             [startBtn removeFromParent];
             fish.physicsBody.dynamic = YES;
+            gameStarted = true;
+        } else if([touched.name isEqualToString:@"music"]){
+            if((gameStarted)&&(!gamePaused)){
+                if(musicOn){
+                    musicOn = false;
+                    [self music];
+                    [musicPlayer stop];
+                } else {
+                    musicOn = true;
+                    [self music];
+                    [musicPlayer play];
+                }
+            }
         }
     } else if(gameOver) {
         //Game over leave scene
@@ -552,15 +600,15 @@ static const uint32_t cat_world = 0x1 << 3;
         bg2.position = CGPointMake(bg2.position.x-3, bg2.position.y);
         hook.position = CGPointMake(hook.position.x - 3, hook.position.y);
         worm.position = CGPointMake(worm.position.x-3,worm.position.y);
-            if(bg.position.x < -bg.size.width){
-                bg.position = CGPointMake(bg2.position.x + bg2.size.width, bg.position.y);
-            }
-            if(bg1.position.x < -bg1.size.width){
-                bg1.position = CGPointMake(bg.position.x + bg.size.width, bg1.position.y);
-            }
-            if(bg2.position.x < -bg2.size.width){
-                bg2.position = CGPointMake(bg1.position.x + bg1.size.width, bg2.position.y);
-            }
+    }
+    if(bg.position.x < -bg.size.width/2){
+        bg.position = CGPointMake(bg2.position.x + bg2.size.width, bg.position.y);
+    }
+    if(bg1.position.x < -bg1.size.width/2){
+        bg1.position = CGPointMake(bg.position.x + bg.size.width, bg1.position.y);
+    }
+    if(bg2.position.x < -bg2.size.width/2){
+        bg2.position = CGPointMake(bg1.position.x + bg1.size.width, bg2.position.y);
     }
 }
 

@@ -54,7 +54,7 @@
     pauseMenu.zPosition = 2;
     SKSpriteNode *resume = [self makeBtn:@"Resume" position:CGPointMake(self.frame.size.width/2, self.frame.size.height + 20)];
     resume.zPosition = 2;
-    SKSpriteNode *tut = [self makeBtn:@"Tutorial" position:CGPointMake(self.frame.size.width/2, self.frame.size.height - 40)];
+    SKSpriteNode *tut = [self makeBtn:@"Game Guide" position:CGPointMake(self.frame.size.width/2, self.frame.size.height - 40)];
     tut.zPosition = 2;
     SKSpriteNode *quit = [self makeBtn:@"Quit" position:CGPointMake(self.frame.size.width/2, self.frame.size.height - 100)];
     quit.zPosition = 2;

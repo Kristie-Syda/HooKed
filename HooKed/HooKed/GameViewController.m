@@ -21,17 +21,15 @@
 
     // Configure the view.
     skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+    skView.showsFPS = NO;
+    skView.showsNodeCount = NO;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = NO;
-    skView.showsPhysics = YES;
+    skView.showsPhysics = NO;
     
     PFUser *currentUser = [PFUser currentUser];
     if(currentUser){
         Menu *scene = [[Menu alloc] initWithSize:skView.bounds.size];
-    NSLog(@"width = %f",skView.bounds.size.width);
-    NSLog(@"height = %f",skView.bounds.size.height);
         scene.scaleMode = SKSceneScaleModeResizeFill;
         scene.anchorPoint = CGPointMake(0, 0);
         /* Notifications */
