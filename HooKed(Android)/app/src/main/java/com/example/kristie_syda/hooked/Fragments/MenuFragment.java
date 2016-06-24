@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.kristie_syda.hooked.Activities.AchievementActivity;
+import com.example.kristie_syda.hooked.Activities.LeaderboardActivity;
 import com.example.kristie_syda.hooked.Activities.MainActivity;
 import com.example.kristie_syda.hooked.Activities.ProfileActivity;
 import com.example.kristie_syda.hooked.Activities.ShopActivity;
@@ -81,6 +82,16 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AchievementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Leaderboard
+        Button leader = (Button) getView().findViewById(R.id.btn_leader);
+        leader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LeaderboardActivity.class);
                 startActivity(intent);
             }
         });
