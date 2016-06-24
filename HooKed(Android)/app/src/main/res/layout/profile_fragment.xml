@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_menu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User Profile"
+        android:id="@+id/title"
+        android:layout_marginTop="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="Back"
+        android:id="@+id/btn_pBack"
+        android:background="#78482d"
+        android:textColor="#fff"
+        android:layout_marginEnd="43dp"
+        android:layout_alignTop="@+id/title"
+        android:layout_toStartOf="@+id/title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserName:"
+        android:id="@+id/lbl_user"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/btn_pBack"
+        android:textColor="#000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HighScore:"
+        android:id="@+id/lbl_score"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/lbl_user"
+        android:layout_alignStart="@+id/lbl_user" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bank:"
+        android:id="@+id/lbl_bank"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/lbl_score"
+        android:layout_alignEnd="@+id/lbl_user" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pUsername"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/lbl_user"
+        android:layout_alignStart="@+id/title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pScore"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_alignStart="@+id/title"
+        android:layout_alignTop="@+id/lbl_score"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pBank"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_alignStart="@+id/title"
+        android:layout_alignTop="@+id/lbl_bank"/>
+
+</RelativeLayout>

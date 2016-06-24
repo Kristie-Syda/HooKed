@@ -13,9 +13,9 @@
         android:ems="10"
         android:background="#fff"
         android:hint="Password"
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/login_username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:paddingLeft="5dp"/>
@@ -23,13 +23,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/username"
+        android:id="@+id/login_username"
         android:hint = "Username"
         android:background="#fff"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/password"
+        android:layout_alignStart="@+id/login_password"
         android:layout_marginTop="134dp"
-        android:layout_alignEnd="@+id/password"
+        android:layout_alignEnd="@+id/login_password"
         android:paddingLeft="5dp"/>
 
     <Button
@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         android:background="#78482d"
         android:textColor="#fff"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/login_password"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -52,7 +52,7 @@
         android:textColor="#000"
         android:textSize="12dp"
         android:layout_below="@+id/btn_login"
-        android:layout_alignStart="@+id/password"
+        android:layout_alignStart="@+id/login_password"
         android:layout_marginTop="20dp" />
 
     <TextView
@@ -63,6 +63,6 @@
         android:textColor="#000"
         android:textSize="12dp"
         android:layout_alignTop="@+id/forgotView"
-        android:layout_alignEnd="@+id/password" />
+        android:layout_alignEnd="@+id/login_password" />
 
 </RelativeLayout>

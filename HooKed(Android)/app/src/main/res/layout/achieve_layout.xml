@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_menu">
+
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="Back"
+        android:id="@+id/btn_aBack"
+        android:background="#78482d"
+        android:textColor="#fff"
+        android:layout_alignTop="@+id/aTitle"
+        android:layout_toStartOf="@+id/aTitle"
+        android:layout_marginEnd="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Achievements"
+        android:id="@+id/aTitle"
+        android:layout_marginTop="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:textSize="30dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView1"
+        android:layout_alignStart="@+id/btn_aBack"
+        android:layout_below="@id/aTitle"
+        android:layout_marginBottom="28dp"
+        android:layout_marginRight="115dp"/>
+
+
+</RelativeLayout>

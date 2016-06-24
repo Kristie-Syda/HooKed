@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_menu">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Menu"
+        android:id="@+id/mTitle"
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:layout_marginStart="47dp"
+        android:layout_alignTop="@+id/btn_logOut"
+        android:layout_alignStart="@+id/btn_play" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Log Out"
+        android:id="@+id/btn_logOut"
+        android:layout_marginStart="94dp"
+        android:textColor="#fff"
+        android:background="#78482d"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="61dp" />
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:text="View Profile"
+        android:id="@+id/btn_play"
+        android:textColor="#fff"
+        android:background="#78482d"
+        android:layout_marginStart="55dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/btn_logOut"
+        android:layout_below="@id/mTitle"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:text="Visit Shop"
+        android:id="@+id/btn_shop"
+        android:textColor="#fff"
+        android:background="#78482d"
+        android:layout_below="@+id/btn_play"
+        android:layout_alignStart="@+id/btn_play"
+        android:layout_marginTop="25dp" />
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:text="Achievements"
+        android:id="@+id/btn_ach"
+        android:textColor="#fff"
+        android:background="#78482d"
+        android:layout_below="@+id/btn_shop"
+        android:layout_alignStart="@+id/btn_play"
+        android:layout_marginTop="25dp" />
+
+</RelativeLayout>

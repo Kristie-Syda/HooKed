@@ -14,9 +14,8 @@
         android:id="@+id/textView2"
         android:textColor="#000"
         android:textSize="20dp"
-        android:layout_marginBottom="25dp"
         android:layout_above="@+id/textView3"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/btn_fSubmit" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,44 +23,42 @@
         android:text="We will send you a reset link to your email."
         android:id="@+id/textView3"
         android:textColor="#000"
-        android:layout_marginBottom="150dp"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:layout_width="240dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/email"
+        android:id="@+id/forget_email"
         android:background="#fff"
         android:padding="5dp"
         android:hint="Email Address"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginTop="26dp" />
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:text="Submit"
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_fSubmit"
         android:background="#78482d"
         android:textColor="#fff"
-        android:layout_below="@+id/email"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginTop="22dp" />
+        android:layout_alignTop="@+id/forget_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="30dp"
         android:text="Back"
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_fBack"
         android:background="#78482d"
         android:textColor="#fff"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="36dp"
         android:layout_above="@+id/textView2"
-        android:layout_toStartOf="@+id/btn_submit" />
+        android:layout_toStartOf="@+id/forget_email" />
 
 </RelativeLayout>
